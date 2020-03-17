@@ -1,0 +1,30 @@
+{
+  "name": "programmable-art-render",
+  "version": "1.0.0",
+  "description": "Magic render of programmable art.",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepare": "npm run build",
+    "test": "jest test/*.test.ts",
+    "build": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MobiusGame/programmable-art-render.git"
+  },
+  "author": "mobius-game",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MobiusGame/programmable-art-render/issues"
+  },
+  "homepage": "https://github.com/MobiusGame/programmable-art-render#readme",
+  "dependencies": {
+    "eosjs": "^20.0.3",
+    "jimp": "^0.9.5",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.1",
+    "@types/node-fetch": "^2.5.5"
+  }
+}
