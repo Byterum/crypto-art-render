@@ -14,6 +14,11 @@ export const KEY_WIDTH = 'width';
 export const KEY_HEIGHT = 'height';
 export const KEY_ANCHOR = 'anchor'
 
+export enum TrailType {
+  Artist = 'Artist',
+  LayerCount = 'Layer Count'
+}
+
 export interface Attribute {
   [KEY_TRAIT_TYPE]: string;
   value: string;
@@ -75,14 +80,16 @@ export interface LayerOption {
   zIndex?: number;
 }
 
+export interface LayerStates {
+  options: Array<LayerOption>;
+  [KEY_TOKEN_ID]: number;
+  [KEY_LEVER_ID]: number;
+}
+
 // Outer Layer with optional sub-layers.
 export interface Layer extends LayerOption {
   id: string;
-  [KEY_STATES]?: {
-    options: Array<LayerOption>;
-    [KEY_TOKEN_ID]: number;
-    [KEY_LEVER_ID]: number;
-  },
+  [KEY_STATES]?: LayerStates
 }
 
 // Master config json
@@ -94,9 +101,9 @@ export interface MasterConfig {
   // image of artwork
   image: string;
   // attributes of artwork
-  attributes: Array<Attribute>;
+  attributes?: Array<Attribute>;
   // layout of artwork with multiple layers
-  layout: {
+  layout?: {
     type: string;
     version: number;
     // multiple layers of artwork

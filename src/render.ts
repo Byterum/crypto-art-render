@@ -1,5 +1,5 @@
 import { TokenId, Platform, ChainAPI } from "./blockchain/datatype";
-import { MasterConfig, KEY_STATES, KEY_TOKEN_ID, KEY_LEVER_ID, LayerOption, Layer, KEY_VISIBLE, ValueOnChain, KEY_WIDTH, KEY_HEIGHT, KEY_SCALE, KEY_FIXED_POS, KEY_ROTATION, KEY_MIRROR, KEY_ANCHOR, KEY_RELATIVE_POS, KEY_ORBIT_ROTATION, KEY_COLOR, Color } from "../master_config";
+import { MasterConfig, KEY_STATES, KEY_TOKEN_ID, KEY_LEVER_ID, Layer, KEY_VISIBLE, ValueOnChain, KEY_WIDTH, KEY_HEIGHT, KEY_SCALE, KEY_FIXED_POS, KEY_ROTATION, KEY_MIRROR, KEY_ANCHOR, KEY_RELATIVE_POS, KEY_ORBIT_ROTATION, KEY_COLOR, Color } from "./master_config";
 import EosAPI from "./blockchain/eos";
 import loadFromUri from "./loader/ipfs_loader";
 import Jimp from 'jimp';
@@ -177,17 +177,22 @@ export default class Render {
     // `anchor` means the active layer which id = anchor
     if (KEY_ANCHOR in currLayer) {
       const anchorLayerId = currLayer[KEY_ANCHOR];
-      const anchorLayer = layers.find(layer => {
+      let anchorLayer;
+      for (let i = 0; i < layers.length; i++) {
+        const layer = layers[i];
         if (layer.id === anchorLayerId) {
           if (KEY_STATES in layer) {
             // only use **active** layer as anchor
             const result = layer[KEY_STATES].options.find(opt => !!opt.active);
-            if (result) return result;
+            if (result) {
+              anchorLayer = result;
+              break;
+            }
           } else {
-            return layer;
+            anchorLayer = layer;
           }
         }
-      });
+      }
       if (!anchorLayer) {
         throw new Error('anchor layer not found');
       }
