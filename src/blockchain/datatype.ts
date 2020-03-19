@@ -7,11 +7,23 @@ export interface TokenSingleLever {
   currValue: number;
 }
 
+export enum Platform {
+  EOS = 'eos',
+  ETH = 'eth'
+}
+
 export interface ChainAPI {
+  cacheMasterToken: Map<TokenId, Token>;
   cacheToken: Map<TokenId, Map<LeverId, TokenSingleLever>>;
-  getCurrValueByLeverId(leverId: LeverId, tokenId: TokenId): Promise<number>;
+  getMasterToken(contract: string, tokenId: TokenId): Promise<Token>;
+  getCurrValueByLeverId(contract: string, leverId: LeverId, tokenId: TokenId): Promise<number>;
 }
 
-export class Token {
-
+export interface Token {
+  id: TokenId;
+  uri: string;
+  symbol: string;
 }
+
+export const TOKEN_TABLE = 'tokens';
+export const CONTROL_TOKEN_TABLE = 'ctltokens';

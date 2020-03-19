@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prepare": "npm run build",
-    "test": "jest test/*.test.ts",
+    "test": "jest",
     "build": "tsc -p tsconfig.json"
   },
   "repository": {
@@ -21,10 +21,17 @@
   "dependencies": {
     "eosjs": "^20.0.3",
     "jimp": "^0.9.5",
+    "nft-resolver": "^1.2.2",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/jest": "^25.1.4",
     "@types/node": "^13.9.1",
-    "@types/node-fetch": "^2.5.5"
+    "@types/node-fetch": "^2.5.5",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0"
   }
 }

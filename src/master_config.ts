@@ -1,15 +1,18 @@
 export const KEY_FIXED_POS = 'fixed-position';
 export const KEY_RELATIVE_POS = 'relative-positoin'
 export const KEY_ROTATION = 'fixed-rotation';
+export const KEY_ORBIT_ROTATION = 'orbit-rotation';
 export const KEY_SCALE = 'scale';
 export const KEY_MIRROR = 'mirror';
 export const KEY_VISIBLE = 'visible';
 export const KEY_STATES = 'states';
 export const KEY_TOKEN_ID = 'token-id';
 export const KEY_LEVER_ID = 'lever-id';
-export const KEY_ORBIT_ROTATION = 'orbit-rotation';
 export const KEY_COLOR = 'color';
 export const KEY_TRAIT_TYPE = 'trait_type';
+export const KEY_WIDTH = 'width';
+export const KEY_HEIGHT = 'height';
+export const KEY_ANCHOR = 'anchor'
 
 export interface Attribute {
   [KEY_TRAIT_TYPE]: string;
@@ -59,12 +62,12 @@ export interface ColorType {
 export interface LayerOption {
   uri?: string;
   label?: string;
-  anchor?: string;
+  [KEY_ANCHOR]?: string;
   [KEY_FIXED_POS]?: PositionType;
   [KEY_ROTATION]?: IntProperty;
   [KEY_MIRROR]?: MirrorType;
   [KEY_RELATIVE_POS]?: PositionType;
-  [KEY_VISIBLE]?: boolean;
+  [KEY_VISIBLE]?: IntProperty;
   finalCenterX?: number;
   finalCenterY?: number;
   active?: boolean;
