@@ -13,15 +13,17 @@ export default class Render {
     this.bc = platform;
     if (platform === Platform.EOS) {
       this.api = new EosAPI(endpoint);
+    } else {
+      throw new Error('not support ETH');
     }
   }
 
   /**
-   * Render artwork with master token id and return base64 string as `image/png`.
+   * Render artwork's composite layers and return base64 string as `image/png`.
    * @param contract Contract address
    * @param masterId Master token id
    */
-  public async renderAsBase64(contract: string, masterId: TokenId): Promise<string> {
+  public async renderCompositeAsBase64(contract: string, masterId: TokenId): Promise<string> {
     const image = await this.render(contract, masterId)
     if (!image) {
       return null;
@@ -30,11 +32,11 @@ export default class Render {
   }
 
   /**
-   * Render artwork with master token id and return buffer as `image/png`.
+   * Render artwork's composite layers and return buffer as `image/png`.
    * @param contract Contract address
    * @param masterId Master token id
    */
-  public async renderAsBuffer(contract: string, masterId: TokenId): Promise<Buffer> {
+  public async renderCompositeAsBuffer(contract: string, masterId: TokenId): Promise<Buffer> {
     const image = await this.render(contract, masterId);
     if (!image) {
       return null;
@@ -42,13 +44,7 @@ export default class Render {
     return await image.getBufferAsync(Jimp.MIME_PNG);
   }
 
-  /**
-   * Render artwork with master token id and return Jimp instance.
-   * note: Do not expose for outer module.
-   * @param contract Contract address
-   * @param masterId Master token id
-   */
-  private async render(contract: string, masterId: TokenId): Promise<Jimp> {
+  private async loadMasterConfig(contract: string, masterId: TokenId): Promise<MasterConfig> {
     const masterToken = await this.api.getMasterToken(contract, masterId);
     if (masterToken.symbol !== 'ART') {
       throw new Error('invalid token symbol, expected \'ART\'');
@@ -63,12 +59,32 @@ export default class Render {
 
     // load master config
     const masterConfig = await loadFromUri(cid);
+    return JSON.parse(masterConfig.toString()) as MasterConfig;
+  }
+
+  /**
+   * Render master image as base64 string with format `image/png`.
+   * @param contract 
+   * @param masterId 
+   */
+  public async renderMaster(contract: string, masterId: TokenId): Promise<string> {
+    const masterConfig = await this.loadMasterConfig(contract, masterId);
     const config = JSON.parse(masterConfig.toString()) as MasterConfig;
     const masterImage = await Jimp.read(await loadFromUri(config.image));
+    return await masterImage.getBase64Async(Jimp.MIME_PNG);
+  }
+
+  /**
+   * Render composite layers (without master image) and return Jimp instance.
+   * @param contract Contract address
+   * @param masterId Master token id
+   */
+  private async render(contract: string, masterId: TokenId): Promise<Jimp> {
+    const config = await this.loadMasterConfig(contract, masterId);
     const layout = config.layout;
     let finalImage: any;
     if (!layout) {
-      return masterImage;
+      throw new Error('image has no layout')
     }
 
     // load the token URI for the layout
@@ -116,7 +132,7 @@ export default class Render {
       }
     }
 
-    return masterImage.composite(finalImage, finalImage.finalCenterX, finalImage.finalCenterY);
+    return finalImage;
   }
 
   // load current value the token controls or just return integer value in object

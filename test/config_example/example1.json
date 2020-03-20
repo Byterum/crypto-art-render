@@ -1,0 +1,94 @@
+{
+  "name": "test",
+  "description": "test",
+  "image": "Qmaje8byBxmFTHDjCvDYLy1NPZkUX1Etx1agDw5HxNqtef",
+  "attributes": [
+    {
+      "trait_type": "Artist",
+      "value": "LowesYang"
+    },
+    {
+      "trait_type": "Artist",
+      "value": "YYH"
+    },
+    {
+      "trait_type": "Layer Count",
+      "value": "4"
+    }
+  ],
+  "layout": {
+    "type": "layered_static",
+    "version": 1,
+    "layers": [
+      {
+        "id": "Background",
+        "states": {
+          "options": [
+            {
+              "uri": "QmRoCMEQgSd6QQo9iA2HdDzwSuqoJ3TLEEzNrRdXm7cKYo",
+              "label": "Classic"
+            },
+            {
+              "uri": "QmXuz6bWxYuB1atjpYt1WJsiT2yfnJ38qHDXWur65fXAsR",
+              "label": "Light Oscillations"
+            },
+            {
+              "uri": "QmcmdZjGHTkkir2oe9wDTXQycKmujGUfDxL6B4Do8e9HyP",
+              "label": "Dark Oscillations",
+              "fixed-position": {
+                "x": {
+                  "token-id": 9,
+                  "lever-id": 1
+                },
+                "y": 300
+              }
+            },
+            {
+              "uri": "Qme8YVzNDjjFxNgwkgSK8RgXJHvQumEx24DgU6SyVZ7kYy",
+              "label": "Electro Tiles",
+              "fixed-rotaton": 100
+            }
+          ],
+          "token-id": 1,
+          "lever-id": 0
+        }
+      },
+      {
+        "id": "andrew",
+        "uri": "QmfSv545gdo6cjxscBvtyetZDCzEEESpnybBS76VY1BjXk",
+        "fixed-position": {
+          "x": 2355,
+          "y": 1365
+        }
+      },
+      {
+        "id": "andrew-feet",
+        "anchor": "andrew",
+        "uri": "QmX42RUqYXHrN8SD194BbGpxPzm7GGcPvAaB15rxohrCgU",
+        "relative-position": {
+          "x": 100,
+          "y": 670
+        },
+        "orbit-rotation": {
+          "token-id": 1,
+          "lever-id": 1
+        }
+      },
+      {
+        "id": "visible-test",
+        "states": {
+          "options": [
+            {
+              "label": "Classic",
+              "width": 100,
+              "height": 100,
+              "visible": 0
+            }
+          ],
+          "token-id": 2,
+          "lever-id": 0
+        }
+      }
+    ]
+  }
+}
