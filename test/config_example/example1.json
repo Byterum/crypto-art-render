@@ -37,7 +37,7 @@
               "label": "Dark Oscillations",
               "fixed-position": {
                 "x": {
-                  "token-id": 9,
+                  "token-id": 1,
                   "lever-id": 1
                 },
                 "y": 300
@@ -71,7 +71,7 @@
         },
         "orbit-rotation": {
           "token-id": 1,
-          "lever-id": 1
+          "lever-id": 2
         }
       },
       {

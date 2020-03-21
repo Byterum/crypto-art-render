@@ -11,7 +11,7 @@ type LayerId = string;
 export default class Generator {
 
   private config: MasterConfig;
-  // mapping token-id => max lever num
+  // mapping relative-layer-token-id => max lever num
   private tokenLeverNum: Map<TokenId, number>;
 
   constructor() {
@@ -278,36 +278,52 @@ export default class Generator {
    * @param contract Art asset contract address
    * @param api Chain api instance
    */
-  async mintArtwork(api: ChainAPI, contract: string, artist: string, uri: string, issuer: string) {
+  async mintArtwork(api: ChainAPI, contract: string, artist: string, issuer: string) {
     this.collectTokens();
-
     try {
       const tokens = Array.from(this.tokenLeverNum.keys());
-      await api.mintArtwork(contract, artist, uri, tokens.map(_ => issuer))
+      await api.mintArtwork(contract, issuer, artist, this.config.image, tokens.map(_ => issuer))
     } catch (e) {
       throw new Error(`failed to mint artwork on chain: ${e.message}`);
     }
   }
 
-  async setuptoken(api: ChainAPI, contract: string, tokenHolder: string, tokenId: TokenId, minValues: number[], maxValues: number[], currValues: number[]) {
+  async setuptoken(api: ChainAPI, contract: string, tokenHolder: string, masterId: TokenId, relativeTokenId: TokenId, minValues: number[], maxValues: number[], currValues: number[]) {
     this.collectTokens();
     if (minValues.length !== maxValues.length || maxValues.length !== currValues.length) {
       throw new Error('min, max, curr values should have equal length');
     }
 
-    const maxLeverNum = this.tokenLeverNum.get(tokenId);
+    const maxLeverNum = this.tokenLeverNum.get(relativeTokenId);
     if (maxLeverNum === undefined) {
-      throw new Error(`token ${tokenId} not found in master config`);
+      throw new Error(`token ${relativeTokenId} not found in master config`);
     }
 
     if (minValues.length < maxLeverNum) {
       throw new Error(`lever num passed in should be no lower than the one collected from master config`);
     }
     try {
-      await api.setuptoken(contract, tokenHolder, tokenId, minValues, maxValues, currValues);
+      await api.setuptoken(contract, tokenHolder, masterId + relativeTokenId, minValues, maxValues, currValues);
     } catch (e) {
       throw new Error(`failed to setup token on chain: ${e.message}`);
     }
+  }
+
+  async updatetoken(api: ChainAPI, contract: string, tokenHolder: string, masterId: TokenId, relativeTokenId: TokenId, levers: number[], newValues: number[]) {
+    try {
+      await api.updatetoken(contract, tokenHolder, masterId + relativeTokenId, levers, newValues);
+    } catch (e) {
+      throw new Error(`failed to update token at levers ${levers} with new values ${newValues}: ${e.message}`);
+    }
+  }
+
+  /**
+   * Return the next available master token id.
+   * @param api Chain API
+   * @param contract Contract account
+   */
+  async availableTokenId(api: ChainAPI, contract: string): Promise<TokenId> {
+    return await api.getAvailableTokenId(contract);
   }
 
   /**
@@ -327,13 +343,9 @@ export default class Generator {
       if (KEY_TOKEN_ID in object) {
         const tokenId = object[KEY_TOKEN_ID];
         const leverId = object[KEY_LEVER_ID];
-        if ('options' in object) {
-          this.tokenLeverNum.set(tokenId, object.options.length);
-        } else {
-          const oldLeverNum = this.tokenLeverNum.get(tokenId);
-          if (leverId >= oldLeverNum || oldLeverNum === undefined) {
-            this.tokenLeverNum.set(tokenId, leverId + 1);
-          }
+        const oldLeverNum = this.tokenLeverNum.get(tokenId);
+        if (leverId >= oldLeverNum || oldLeverNum === undefined) {
+          this.tokenLeverNum.set(tokenId, leverId + 1);
         }
       } else {
         for (let key in object) {
@@ -341,5 +353,9 @@ export default class Generator {
         }
       }
     }
+  }
+
+  getLeverNum(tokenId: TokenId) {
+    return this.tokenLeverNum.get(tokenId);
   }
 }

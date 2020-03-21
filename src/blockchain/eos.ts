@@ -12,18 +12,58 @@ import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig';
 import { TextEncoder, TextDecoder } from 'util';
 import fetch from 'node-fetch';
 
+interface EosAPIOption {
+  endpoint: string;
+  privKey: string;
+}
+
+export const defaultEosAPIOption: EosAPIOption = {
+  endpoint: "http://localhost:8888",
+  privKey: '5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'
+}
 
 export default class EosAPI implements ChainAPI {
   cacheMasterToken: Map<TokenId, Token>;
   cacheToken: Map<TokenId, Map<LeverId, TokenSingleLever>>;
   api: Api;
 
-  constructor(endpoint: string = "https://api-kylin.eoslaomao.com", privKey?: string) {
-    const rpc = new JsonRpc(endpoint, { fetch: fetch as any });
-    const signatureProvider = new JsSignatureProvider([privKey])
+  constructor(options?: EosAPIOption) {
+    const opts = Object.assign({}, defaultEosAPIOption, options || {});
+    const rpc = new JsonRpc(opts.endpoint, { fetch: fetch as any });
+    const signatureProvider = new JsSignatureProvider([opts.privKey])
     this.api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
     this.cacheMasterToken = new Map<TokenId, Token>();
     this.cacheToken = new Map<TokenId, Map<LeverId, TokenSingleLever>>();
+  }
+
+  /**
+   * Fetch next available token id that can be set as master token id.
+   * @param contract Artwork contract account 
+   */
+  async getAvailableTokenId(contract: string): Promise<TokenId> {
+    const resp = await this.api.rpc.get_table_rows({
+      json: true,
+      code: contract,
+      scope: contract,
+      table: TOKEN_TABLE,
+      limit: -1
+    })
+
+    if (resp.rows.length > 0) {
+      // set cache
+      resp.rows.forEach(row => {
+        if (row.id === row.master) {
+          // is master token
+          this.cacheMasterToken.set(row.id, row);
+        } else {
+          // is layer token
+          this.cacheToken.set(row.id, row);
+        }
+      })
+      const last = resp.rows[resp.rows.length - 1];
+      return last.id + 1;
+    }
+    return 0;
   }
 
   async getMasterToken(contract: string, tokenId: TokenId): Promise<Token> {
@@ -85,13 +125,13 @@ export default class EosAPI implements ChainAPI {
     return undefined;
   }
 
-  async mintArtwork(contract: string, artist: string, uri: string, collaborators: Array<string>) {
+  async mintArtwork(contract: string, issuer: string, artist: string, uri: string, collaborators: Array<string>) {
     return await this.api.transact({
       actions: [{
         account: contract,
         name: 'mintartwork',
         authorization: [{
-          actor: contract,
+          actor: issuer,
           permission: 'active'
         }],
         data: {
@@ -118,7 +158,7 @@ export default class EosAPI implements ChainAPI {
         data: {
           token_id: tokenId,
           min_values: minValues,
-          max_vaules: maxValues,
+          max_values: maxValues,
           curr_values: currValues
         }
       }]
@@ -128,7 +168,7 @@ export default class EosAPI implements ChainAPI {
     })
   }
 
-  async updatetoken(contract: string, tokenHolder: string, tokenId: TokenId, leverIds: number[], currValues: number[]) {
+  async updatetoken(contract: string, tokenHolder: string, tokenId: TokenId, leverIds: number[], newValues: number[]) {
     return await this.api.transact({
       actions: [{
         account: contract,
@@ -140,7 +180,7 @@ export default class EosAPI implements ChainAPI {
         data: {
           token_id: tokenId,
           lever_ids: leverIds,
-          curr_values: currValues
+          new_values: newValues
         }
       }]
     }, {

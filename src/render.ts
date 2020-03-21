@@ -1,6 +1,6 @@
 import { TokenId, Platform, ChainAPI } from "./blockchain/datatype";
 import { MasterConfig, KEY_STATES, KEY_TOKEN_ID, KEY_LEVER_ID, Layer, KEY_VISIBLE, ValueOnChain, KEY_WIDTH, KEY_HEIGHT, KEY_SCALE, KEY_FIXED_POS, KEY_ROTATION, KEY_MIRROR, KEY_ANCHOR, KEY_RELATIVE_POS, KEY_ORBIT_ROTATION, KEY_COLOR, Color } from "./master_config";
-import EosAPI from "./blockchain/eos";
+import EosAPI, { defaultEosAPIOption } from "./blockchain/eos";
 import loadFromUri from "./loader/ipfs_loader";
 import Jimp from 'jimp';
 import { NftURI } from "nft-resolver";
@@ -9,10 +9,14 @@ export default class Render {
   api: ChainAPI;
   bc: Platform;
 
-  constructor(endpoint: string, platform: Platform = Platform.EOS) {
+  constructor(endpoint?: string, platform: Platform = Platform.EOS) {
     this.bc = platform;
     if (platform === Platform.EOS) {
-      this.api = new EosAPI(endpoint);
+      const opts = defaultEosAPIOption;
+      this.api = new EosAPI({
+        ...defaultEosAPIOption,
+        endpoint
+      });
     } else {
       throw new Error('not support ETH');
     }
@@ -96,13 +100,13 @@ export default class Render {
       // layer['states]
       if (KEY_STATES in layer) {
         const states = layer[KEY_STATES];
-        const optionIndex = await this.readValueFromChain(contract, states);
+        const optionIndex = await this.readValueFromChain(contract, masterId, states);
         layer = states.options[optionIndex] as Layer;
       }
 
       // layer['visible']
       if (KEY_VISIBLE in layer) {
-        const isVisible = (await this.readValueFromChain(contract, layer[KEY_VISIBLE])) === 1;
+        const isVisible = (await this.readValueFromChain(contract, masterId, layer[KEY_VISIBLE])) === 1;
         if (!isVisible) {
           console.log('layer is not visible');
           continue;
@@ -128,7 +132,7 @@ export default class Render {
         layer.finalCenterY = tmpLayerImg.bitmap.height / 2;
       } else {
         // render current layer over the previous layer
-        finalImage = await this.renderLayer(contract, finalImage, layout.layers, layer, tmpLayerImg);
+        finalImage = await this.renderLayer(contract, finalImage, layout.layers, layer, tmpLayerImg, masterId);
       }
     }
 
@@ -136,11 +140,11 @@ export default class Render {
   }
 
   // load current value the token controls or just return integer value in object
-  private async readValueFromChain(contract: string, value: ValueOnChain | number) {
+  private async readValueFromChain(contract: string, masterId: TokenId, value: ValueOnChain | number) {
     if (typeof value === 'object') {
       const params = value as ValueOnChain
       if (this.bc === Platform.EOS) {
-        const rtnVal = await this.api.getCurrValueByLeverId(contract, params[KEY_LEVER_ID], params[KEY_TOKEN_ID]);
+        const rtnVal = await this.api.getCurrValueByLeverId(contract, params[KEY_LEVER_ID], masterId + params[KEY_TOKEN_ID]);
         return rtnVal;
       } else if (this.bc === Platform.ETH) {
         throw new Error('Not support ethereum');
@@ -153,14 +157,14 @@ export default class Render {
   }
 
   // render a single layer
-  private async renderLayer(contract: string, currImage: Jimp, layers: Array<Layer>, currLayer: Layer, layerImage: Jimp): Promise<Jimp> {
+  private async renderLayer(contract: string, currImage: Jimp, layers: Array<Layer>, currLayer: Layer, layerImage: Jimp, masterId: TokenId): Promise<Jimp> {
     let bitmapWidth = layerImage.bitmap.width;
     let bitmapHeight = layerImage.bitmap.height;
 
     // apply `scale` property to layer image
     if (KEY_SCALE in currLayer) {
-      const scaleX = await this.readValueFromChain(contract, currLayer[KEY_SCALE]['x']);
-      const scaleY = await this.readValueFromChain(contract, currLayer[KEY_SCALE]['y']);
+      const scaleX = await this.readValueFromChain(contract, masterId, currLayer[KEY_SCALE]['x']);
+      const scaleY = await this.readValueFromChain(contract, masterId, currLayer[KEY_SCALE]['y']);
       if (scaleX === 0 || scaleY === 0) {
         console.log("scale X or Y is 0 -- returning currentImage.");
         return currImage;
@@ -174,7 +178,7 @@ export default class Render {
 
     // apply `rotation` property to layer image
     if (KEY_ROTATION in currLayer) {
-      const degree = await this.readValueFromChain(contract, currLayer[KEY_ROTATION]);
+      const degree = await this.readValueFromChain(contract, masterId, currLayer[KEY_ROTATION]);
       layerImage.rotate(degree, true);
       // adjust for the new width and height based on the rotation
       bitmapWidth = layerImage.bitmap.width;
@@ -183,8 +187,8 @@ export default class Render {
 
     // apply `mirror` property to layer image
     if (KEY_MIRROR in currLayer) {
-      const isMirrorX = (await this.readValueFromChain(contract, currLayer[KEY_SCALE]['x'])) === 1;
-      const isMirrorY = (await this.readValueFromChain(contract, currLayer[KEY_SCALE]['y'])) === 1;
+      const isMirrorX = (await this.readValueFromChain(contract, masterId, currLayer[KEY_SCALE]['x'])) === 1;
+      const isMirrorY = (await this.readValueFromChain(contract, masterId, currLayer[KEY_SCALE]['y'])) === 1;
       layerImage.mirror(isMirrorX, isMirrorY);
     }
 
@@ -220,17 +224,17 @@ export default class Render {
     let relativeX, relativeY;
     // apply `position` property to layer image
     if (KEY_FIXED_POS in currLayer) {
-      x = await this.readValueFromChain(contract, currLayer[KEY_FIXED_POS]['x']);
-      y = await this.readValueFromChain(contract, currLayer[KEY_FIXED_POS]['y']);
+      x = await this.readValueFromChain(contract, masterId, currLayer[KEY_FIXED_POS]['x']);
+      y = await this.readValueFromChain(contract, masterId, currLayer[KEY_FIXED_POS]['y']);
     } else {
       // apply `relative position` property to layer image
       if (KEY_RELATIVE_POS in currLayer) {
-        relativeX = await this.readValueFromChain(contract, currLayer[KEY_RELATIVE_POS]['x']);
-        relativeY = await this.readValueFromChain(contract, currLayer[KEY_RELATIVE_POS]['y']);
+        relativeX = await this.readValueFromChain(contract, masterId, currLayer[KEY_RELATIVE_POS]['x']);
+        relativeY = await this.readValueFromChain(contract, masterId, currLayer[KEY_RELATIVE_POS]['y']);
       }
 
       if (KEY_ORBIT_ROTATION in currLayer) {
-        const degree = await this.readValueFromChain(contract, currLayer[KEY_ORBIT_ROTATION]);
+        const degree = await this.readValueFromChain(contract, masterId, currLayer[KEY_ORBIT_ROTATION]);
         console.log(`orbit ${degree} degree around anchor (${x},${y})`);
         const rad = (-degree * Math.PI) / 180;
 
@@ -258,7 +262,7 @@ export default class Render {
     if (KEY_COLOR in currLayer) {
       const color = currLayer[KEY_COLOR];
       if (Color.R in color) {
-        const red = await this.readValueFromChain(contract, color[Color.R]);
+        const red = await this.readValueFromChain(contract, masterId, color[Color.R]);
         layerImage.color([
           {
             apply: 'red',
@@ -268,7 +272,7 @@ export default class Render {
       }
 
       if (Color.G in color) {
-        const green = await this.readValueFromChain(contract, color[Color.R]);
+        const green = await this.readValueFromChain(contract, masterId, color[Color.R]);
         layerImage.color([
           {
             apply: 'green',
@@ -278,7 +282,7 @@ export default class Render {
       }
 
       if (Color.B in color) {
-        const blue = await this.readValueFromChain(contract, color[Color.B]);
+        const blue = await this.readValueFromChain(contract, masterId, color[Color.B]);
         layerImage.color([
           {
             apply: 'blue',
@@ -288,7 +292,7 @@ export default class Render {
       }
 
       if (Color.HUE in color) {
-        const hue = await this.readValueFromChain(contract, color[Color.HUE]);
+        const hue = await this.readValueFromChain(contract, masterId, color[Color.HUE]);
         layerImage.color([
           {
             apply: 'hue',
@@ -298,7 +302,7 @@ export default class Render {
       }
 
       if (Color.ALPHA in color) {
-        const alpha = await this.readValueFromChain(contract, color[Color.ALPHA]);
+        const alpha = await this.readValueFromChain(contract, masterId, color[Color.ALPHA]);
         layerImage.opacity(alpha / 100);
       }
     }

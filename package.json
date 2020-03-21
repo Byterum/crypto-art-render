@@ -21,7 +21,7 @@
   "dependencies": {
     "eosjs": "^20.0.3",
     "jimp": "^0.9.5",
-    "nft-resolver": "^1.2.4",
+    "nft-resolver": "^1.2.5",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
@@ -36,5 +36,10 @@
     "jest-fetch-mock": "^3.0.3",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "dist/**/*.js"
+    ]
   }
 }

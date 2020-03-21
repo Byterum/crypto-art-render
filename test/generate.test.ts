@@ -1,22 +1,25 @@
 import { MasterConfig, KEY_TRAIT_TYPE, KEY_FIXED_POS, KEY_STATES } from "../src/master_config"
 import Generator from "../src/generator";
 import * as fs from 'fs';
+import EosAPI from "../src/blockchain/eos";
+import { ChainAPI } from "../src/blockchain/datatype";
+import { NftURI } from "nft-resolver";
 
 
 describe('test artwork generator', () => {
-  let masterConfig: MasterConfig;
   let generator: Generator;
   let exampleConfig: MasterConfig;
+  const cid = 'Qmaje8byBxmFTHDjCvDYLy1NPZkUX1Etx1agDw5HxNqtef';
   beforeAll(async () => {
     generator = new Generator();
     exampleConfig = JSON.parse(fs.readFileSync('test/config_example/example1.json').toString()) as MasterConfig;
   })
   test('generate basic master config', () => {
-    generator.initialize('test', 'test', 'Qmaje8byBxmFTHDjCvDYLy1NPZkUX1Etx1agDw5HxNqtef');
+    generator.initialize('test', 'test', cid);
     const basic = generator.masterConfig;
     expect(basic.name).toBe('test');
     expect(basic.description).toBe('test');
-    expect(basic.image).toBe('Qmaje8byBxmFTHDjCvDYLy1NPZkUX1Etx1agDw5HxNqtef');
+    expect(basic.image).toBe(cid);
   })
 
   test('add atributes in need', () => {
@@ -133,5 +136,50 @@ describe('test artwork generator', () => {
   test('modify fix-position property for states layer `Background`', () => {
     generator.setFixedPosition('Background', { x: 1, y: 1 }, 2);
     expect(generator.masterConfig.layout.layers.find(l => l.id === 'Background')[KEY_STATES].options[2][KEY_FIXED_POS]).toEqual({ x: 1, y: 1 })
+  })
+
+  describe('initialize artwork on chain', () => {
+    let contract = 'cryptoart'
+    let masterId;
+    let api: ChainAPI;
+
+    beforeAll(() => {
+      api = new EosAPI()
+      generator.setConfig(exampleConfig);
+    })
+
+    test('mint artwork on chain', async () => {
+      masterId = await generator.availableTokenId(api, contract);
+      await generator.mintArtwork(api, contract, 'eosio', 'eosio');
+      const token = await api.getMasterToken(contract, masterId);
+      expect(token.id).toBe(masterId);
+      const reslovedUri = new NftURI(token.uri);
+      expect(reslovedUri.getParam('ipfs')).toBe(generator.masterConfig.image);
+      expect(token.symbol).toBe('ART');
+    })
+
+    test('setup layer token with wrong lever num', async () => {
+      try {
+        const minValues = [0, 0];
+        const maxValues = [3, 1800];
+        const currValues = [0, 0];
+        await generator.setuptoken(api, contract, 'eosio', masterId, 1, minValues, maxValues, currValues);
+        expect(false).toBe(true);
+      } catch (e) {
+        expect(true).toBe(true);
+      }
+    })
+
+    test('setup layer token on chain', async () => {
+      const minValues = [0, 0, -360];
+      const maxValues = [3, 1800, 360];
+      const currValues = [0, 0, 0];
+      console.log(generator)
+      await generator.setuptoken(api, contract, 'eosio', masterId, 1, minValues, maxValues, currValues);
+    })
+
+    test('update layer token lever on chain', async () => {
+      await generator.updatetoken(api, contract, 'eosio', masterId, 1, [0], [3]);
+    })
   })
 })
