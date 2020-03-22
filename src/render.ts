@@ -1,60 +1,42 @@
 import { TokenId, Platform, ChainAPI } from "./blockchain/datatype";
 import { MasterConfig, KEY_STATES, KEY_TOKEN_ID, KEY_LEVER_ID, Layer, KEY_VISIBLE, ValueOnChain, KEY_WIDTH, KEY_HEIGHT, KEY_SCALE, KEY_FIXED_POS, KEY_ROTATION, KEY_MIRROR, KEY_ANCHOR, KEY_RELATIVE_POS, KEY_ORBIT_ROTATION, KEY_COLOR, Color } from "./master_config";
-import EosAPI, { defaultEosAPIOption } from "./blockchain/eos";
-import loadFromUri from "./loader/ipfs_loader";
+import EosAPI from "./blockchain/eos";
 import Jimp from 'jimp';
 import { NftURI } from "nft-resolver";
+import Loader from "./loader/interface";
 
+/**
+ * Artwork render.
+ */
 export default class Render {
   api: ChainAPI;
   bc: Platform;
+  loader: Loader;
 
-  constructor(endpoint?: string, platform: Platform = Platform.EOS) {
+  constructor(loader: Loader, endpoint?: string, platform: Platform = Platform.EOS) {
     this.bc = platform;
     if (platform === Platform.EOS) {
-      const opts = defaultEosAPIOption;
-      this.api = new EosAPI({
-        ...defaultEosAPIOption,
-        endpoint
-      });
+      const opts = {} as any;
+      if (endpoint) opts.endpoint = endpoint;
+      this.api = new EosAPI(opts);
     } else {
       throw new Error('not support ETH');
     }
+    this.loader = loader;
   }
 
   /**
-   * Render artwork's composite layers and return base64 string as `image/png`.
-   * @param contract Contract address
-   * @param masterId Master token id
+   * Load master config and return data json.
+   * @param contract 
+   * @param masterId 
    */
-  public async renderCompositeAsBase64(contract: string, masterId: TokenId): Promise<string> {
-    const image = await this.render(contract, masterId)
-    if (!image) {
-      return null;
-    }
-    return image.getBase64Async(Jimp.MIME_PNG)
-  }
-
-  /**
-   * Render artwork's composite layers and return buffer as `image/png`.
-   * @param contract Contract address
-   * @param masterId Master token id
-   */
-  public async renderCompositeAsBuffer(contract: string, masterId: TokenId): Promise<Buffer> {
-    const image = await this.render(contract, masterId);
-    if (!image) {
-      return null;
-    }
-    return await image.getBufferAsync(Jimp.MIME_PNG);
-  }
-
   private async loadMasterConfig(contract: string, masterId: TokenId): Promise<MasterConfig> {
     const masterToken = await this.api.getMasterToken(contract, masterId);
     if (masterToken.symbol !== 'ART') {
       throw new Error('invalid token symbol, expected \'ART\'');
     }
 
-    console.log(`Load token ${masterToken.id} from contract success`);
+    // console.log(`Load token ${masterToken.id} from contract success`);
     const resolvedUri = new NftURI(masterToken.uri);
     const cid = resolvedUri.getParam('ipfs');
     if (!cid) {
@@ -62,7 +44,7 @@ export default class Render {
     }
 
     // load master config
-    const masterConfig = await loadFromUri(cid);
+    const masterConfig = await this.loader.loadFromUri(cid);
     return JSON.parse(masterConfig.toString()) as MasterConfig;
   }
 
@@ -71,11 +53,23 @@ export default class Render {
    * @param contract 
    * @param masterId 
    */
-  public async renderMaster(contract: string, masterId: TokenId): Promise<string> {
-    const masterConfig = await this.loadMasterConfig(contract, masterId);
-    const config = JSON.parse(masterConfig.toString()) as MasterConfig;
-    const masterImage = await Jimp.read(await loadFromUri(config.image));
-    return await masterImage.getBase64Async(Jimp.MIME_PNG);
+  public async renderMaster(contract: string, masterId: TokenId): Promise<Jimp> {
+    const config = await this.loadMasterConfig(contract, masterId);
+    return await this.loadImageFromIPFS(config.image);
+  }
+
+  /**
+ * Render artwork's composite layers and return base64 string as `image/png`.
+ * @param contract Contract address
+ * @param masterId Master token id
+ */
+  public async renderComposite(contract: string, masterId: TokenId): Promise<Jimp> {
+    return await this.render(contract, masterId)
+  }
+
+  private async loadImageFromIPFS(cid: string): Promise<Jimp> {
+    const buffer = await this.loader.loadFromUri(cid)
+    return await Jimp.read(buffer);
   }
 
   /**
@@ -91,11 +85,17 @@ export default class Render {
       throw new Error('image has no layout')
     }
 
+    let start;
     // load the token URI for the layout
     for (let i = 0; i < layout.layers.length; i++) {
       let layer: Layer = layout.layers[i];
       console.log(process.memoryUsage().rss / 1024 / 1024 + " MB");
       console.log(`rendering layer [${i + 1}] with layer-id ${layer.id}`);
+
+      if (i !== 0) {
+        console.log(`cost time ${Date.now() - start}ms`);
+      }
+      start = Date.now();
 
       // layer['states]
       if (KEY_STATES in layer) {
@@ -108,7 +108,6 @@ export default class Render {
       if (KEY_VISIBLE in layer) {
         const isVisible = (await this.readValueFromChain(contract, masterId, layer[KEY_VISIBLE])) === 1;
         if (!isVisible) {
-          console.log('layer is not visible');
           continue;
         }
       }
@@ -119,7 +118,7 @@ export default class Render {
         tmpLayerImg = new Jimp(layer[KEY_WIDTH], layer[KEY_HEIGHT]);
       } else {
         // layer uri is usually cid and load from IPFS
-        tmpLayerImg = await Jimp.read(await loadFromUri(layer.uri));
+        tmpLayerImg = await this.loadImageFromIPFS(layer.uri);
       }
 
       if (finalImage === undefined) {
@@ -144,8 +143,7 @@ export default class Render {
     if (typeof value === 'object') {
       const params = value as ValueOnChain
       if (this.bc === Platform.EOS) {
-        const rtnVal = await this.api.getCurrValueByLeverId(contract, params[KEY_LEVER_ID], masterId + params[KEY_TOKEN_ID]);
-        return rtnVal;
+        return await this.api.getCurrValueByLeverId(contract, params[KEY_LEVER_ID], masterId + params[KEY_TOKEN_ID]);
       } else if (this.bc === Platform.ETH) {
         throw new Error('Not support ethereum');
       } else {

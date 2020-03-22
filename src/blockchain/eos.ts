@@ -81,12 +81,13 @@ export default class EosAPI implements ChainAPI {
 
     if (resp.rows.length > 0) {
       const token = resp.rows[0];
-      this.cacheMasterToken.set(tokenId, token);
-      return {
+      const cache = {
         id: token.id,
         uri: token.uri,
         symbol: token.value.split(' ')[1]
-      };
+      }
+      this.cacheMasterToken.set(tokenId, cache);
+      return cache;
     }
     return null;
   }
@@ -112,14 +113,14 @@ export default class EosAPI implements ChainAPI {
 
     if (resp.rows.length > 0) {
       const token = resp.rows[0];
-      token.curr_value((val, i) => {
+      token.curr_values.forEach((val, i) => {
         cache.set(i, {
-          minValue: token.min_value[i],
-          maxValue: token.max_value[i],
+          minValue: token.min_values[i],
+          maxValue: token.max_values[i],
           currValue: val
         })
       })
-      return token.curr_value[leverId]
+      return token.curr_values[leverId]
     }
 
     return undefined;

@@ -1,0 +1,1410 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Generator | crypto-art-render</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">crypto-art-render</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_generator_.html">&quot;generator&quot;</a>
+				</li>
+				<li>
+					<a href="_generator_.generator.html">Generator</a>
+				</li>
+			</ul>
+			<h1>Class Generator</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Generator is used to generate standard master config, upload to
+						ipfs network and get cid in one.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Generator</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_generator_.generator.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_generator_.generator.html#config" class="tsd-kind-icon">config</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_generator_.generator.html#tokenlevernum" class="tsd-kind-icon">token<wbr>Lever<wbr>Num</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_generator_.generator.html#masterconfig" class="tsd-kind-icon">master<wbr>Config</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#addattributes" class="tsd-kind-icon">add<wbr>Attributes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#addpurelayer" class="tsd-kind-icon">add<wbr>Pure<wbr>Layer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#addstateslayer" class="tsd-kind-icon">add<wbr>States<wbr>Layer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#addstatesoptions" class="tsd-kind-icon">add<wbr>States<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#availabletokenid" class="tsd-kind-icon">available<wbr>Token<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_generator_.generator.html#collectlayertoken" class="tsd-kind-icon">collect<wbr>Layer<wbr>Token</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_generator_.generator.html#collecttokens" class="tsd-kind-icon">collect<wbr>Tokens</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#getlevernum" class="tsd-kind-icon">get<wbr>Lever<wbr>Num</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#initialize" class="tsd-kind-icon">initialize</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#mintartwork" class="tsd-kind-icon">mint<wbr>Artwork</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setanchor" class="tsd-kind-icon">set<wbr>Anchor</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setattributes" class="tsd-kind-icon">set<wbr>Attributes</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setcolor" class="tsd-kind-icon">set<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setconfig" class="tsd-kind-icon">set<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setfixedposition" class="tsd-kind-icon">set<wbr>Fixed<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setfixedrotation" class="tsd-kind-icon">set<wbr>Fixed<wbr>Rotation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setheight" class="tsd-kind-icon">set<wbr>Height</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setlayout" class="tsd-kind-icon">set<wbr>Layout</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setmirror" class="tsd-kind-icon">set<wbr>Mirror</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setorbitrotation" class="tsd-kind-icon">set<wbr>Orbit<wbr>Rotation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setrelativeposition" class="tsd-kind-icon">set<wbr>Relative<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setscale" class="tsd-kind-icon">set<wbr>Scale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setwidth" class="tsd-kind-icon">set<wbr>Width</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#setuptoken" class="tsd-kind-icon">setuptoken</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_generator_.generator.html#updatetoken" class="tsd-kind-icon">updatetoken</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Generator<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_generator_.generator.html" class="tsd-signature-type">Generator</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L15">generator.ts:15</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_generator_.generator.html" class="tsd-signature-type">Generator</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="config" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> config</h3>
+					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_master_config_.masterconfig.html" class="tsd-signature-type">MasterConfig</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L13">generator.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="tokenlevernum" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> token<wbr>Lever<wbr>Num</h3>
+					<div class="tsd-signature tsd-kind-icon">token<wbr>Lever<wbr>Num<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L15">generator.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="masterconfig" class="tsd-anchor"></a>
+					<h3>master<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> masterConfig<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_master_config_.masterconfig.html" class="tsd-signature-type">MasterConfig</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L36">generator.ts:36</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_master_config_.masterconfig.html" class="tsd-signature-type">MasterConfig</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addattributes" class="tsd-anchor"></a>
+					<h3>add<wbr>Attributes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Attributes<span class="tsd-signature-symbol">(</span>attrs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.attribute.html" class="tsd-signature-type">Attribute</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L56">generator.ts:56</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Append a list of attributes to the config.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>attrs: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.attribute.html" class="tsd-signature-type">Attribute</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Artwork attributes</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addpurelayer" class="tsd-anchor"></a>
+					<h3>add<wbr>Pure<wbr>Layer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Pure<wbr>Layer<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, body<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_master_config_.layeroption.html" class="tsd-signature-type">LayerOption</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L98">generator.ts:98</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a layer with pure state.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> body: <a href="../interfaces/_master_config_.layeroption.html" class="tsd-signature-type">LayerOption</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer optional params follow <code>LayerOption</code></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addstateslayer" class="tsd-anchor"></a>
+					<h3>add<wbr>States<wbr>Layer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>States<wbr>Layer<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, states<span class="tsd-signature-symbol">: </span><a href="../interfaces/_master_config_.layerstates.html" class="tsd-signature-type">LayerStates</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L80">generator.ts:80</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a layer with multiple states.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>states: <a href="../interfaces/_master_config_.layerstates.html" class="tsd-signature-type">LayerStates</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer states controlled by layer token</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addstatesoptions" class="tsd-anchor"></a>
+					<h3>add<wbr>States<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>States<wbr>Options<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, opts<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.layeroption.html" class="tsd-signature-type">LayerOption</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L116">generator.ts:116</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Append muliple options to <code>layer.states.options</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> opts: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.layeroption.html" class="tsd-signature-type">LayerOption</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = []</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array of layer option</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="availabletokenid" class="tsd-anchor"></a>
+					<h3>available<wbr>Token<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">available<wbr>Token<wbr>Id<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a>, contract<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L363">generator.ts:363</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the next available master token id.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>api: <a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Chain API</p>
+									</div>
+								</li>
+								<li>
+									<h5>contract: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Contract account</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="collectlayertoken" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> collect<wbr>Layer<wbr>Token</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">collect<wbr>Layer<wbr>Token<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L379">generator.ts:379</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>object: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="collecttokens" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> collect<wbr>Tokens</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">collect<wbr>Tokens<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L370">generator.ts:370</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Collect layer token and its maximum lever num.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getlevernum" class="tsd-anchor"></a>
+					<h3>get<wbr>Lever<wbr>Num</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Lever<wbr>Num<span class="tsd-signature-symbol">(</span>tokenId<span class="tsd-signature-symbol">: </span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L396">generator.ts:396</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tokenId: <a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="initialize" class="tsd-anchor"></a>
+					<h3>initialize</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">initialize<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, desc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, image<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#cid" class="tsd-signature-type">cid</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L27">generator.ts:27</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Init basic master config.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Artwork name</p>
+									</div>
+								</li>
+								<li>
+									<h5>desc: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Artwork description</p>
+									</div>
+								</li>
+								<li>
+									<h5>image: <a href="../modules/_generator_.html#cid" class="tsd-signature-type">cid</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Artwork image IPFS cid</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="mintartwork" class="tsd-anchor"></a>
+					<h3>mint<wbr>Artwork</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">mint<wbr>Artwork<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a>, contract<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, artist<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, issuer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, configCid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L298">generator.ts:298</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Mint artwork to artist on chain. All posible layer tokens will be
+									issued to given issuer at first.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>api: <a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Chain api instance</p>
+									</div>
+								</li>
+								<li>
+									<h5>contract: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Art contract address</p>
+									</div>
+								</li>
+								<li>
+									<h5>artist: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Artist of artwork</p>
+									</div>
+								</li>
+								<li>
+									<h5>issuer: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Issuer of tokens</p>
+									</div>
+								</li>
+								<li>
+									<h5>configCid: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setanchor" class="tsd-anchor"></a>
+					<h3>set<wbr>Anchor</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Anchor<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, anchoredLayerId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L280">generator.ts:280</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set anchor point for a given layer.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer need to anchor</p>
+									</div>
+								</li>
+								<li>
+									<h5>anchoredLayerId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setattributes" class="tsd-anchor"></a>
+					<h3>set<wbr>Attributes</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Attributes<span class="tsd-signature-symbol">(</span>attrs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.attribute.html" class="tsd-signature-type">Attribute</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L48">generator.ts:48</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set multiple attributes of basic config info.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>attrs: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.attribute.html" class="tsd-signature-type">Attribute</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Artwork attributes</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setcolor" class="tsd-anchor"></a>
+					<h3>set<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Color<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, color<span class="tsd-signature-symbol">: </span><a href="../enums/_master_config_.color.html" class="tsd-signature-type">Color</a>, val<span class="tsd-signature-symbol">: </span><a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L237">generator.ts:237</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set color scheme for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>color: <a href="../enums/_master_config_.color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Color scheme type</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current color value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setconfig" class="tsd-anchor"></a>
+					<h3>set<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Config<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/_master_config_.masterconfig.html" class="tsd-signature-type">MasterConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L40">generator.ts:40</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>config: <a href="../interfaces/_master_config_.masterconfig.html" class="tsd-signature-type">MasterConfig</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setfixedposition" class="tsd-anchor"></a>
+					<h3>set<wbr>Fixed<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Fixed<wbr>Position<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../interfaces/_master_config_.positiontype.html" class="tsd-signature-type">PositionType</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L138">generator.ts:138</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set fixed position for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../interfaces/_master_config_.positiontype.html" class="tsd-signature-type">PositionType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Position coordinate</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Index of <code>layer.states.options</code></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setfixedrotation" class="tsd-anchor"></a>
+					<h3>set<wbr>Fixed<wbr>Rotation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Fixed<wbr>Rotation<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L166">generator.ts:166</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set fixed rotaton degree for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setheight" class="tsd-anchor"></a>
+					<h3>set<wbr>Height</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Height<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L266">generator.ts:266</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set height property for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+								</li>
+								<li>
+									<h5>val: <a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setlayout" class="tsd-anchor"></a>
+					<h3>set<wbr>Layout</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Layout<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, version<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, layers<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.layer.html" class="tsd-signature-type">Layer</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L66">generator.ts:66</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set layout of artwork.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layout type name</p>
+									</div>
+								</li>
+								<li>
+									<h5>version: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layout version</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> layers: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.layer.html" class="tsd-signature-type">Layer</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = []</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layers the layout holds. Default empty array.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setmirror" class="tsd-anchor"></a>
+					<h3>set<wbr>Mirror</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Mirror<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../interfaces/_master_config_.mirrortype.html" class="tsd-signature-type">MirrorType</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L208">generator.ts:208</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set mirror transition for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../interfaces/_master_config_.mirrortype.html" class="tsd-signature-type">MirrorType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setorbitrotation" class="tsd-anchor"></a>
+					<h3>set<wbr>Orbit<wbr>Rotation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Orbit<wbr>Rotation<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L180">generator.ts:180</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set orbit rotation degree for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setrelativeposition" class="tsd-anchor"></a>
+					<h3>set<wbr>Relative<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Relative<wbr>Position<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../interfaces/_master_config_.positiontype.html" class="tsd-signature-type">PositionType</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L152">generator.ts:152</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set relative position for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../interfaces/_master_config_.positiontype.html" class="tsd-signature-type">PositionType</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Positoin coordiante</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setscale" class="tsd-anchor"></a>
+					<h3>set<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Scale<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L194">generator.ts:194</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set scale factor for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setvisible" class="tsd-anchor"></a>
+					<h3>set<wbr>Visible</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Visible<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L222">generator.ts:222</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set visible status for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer id</p>
+									</div>
+								</li>
+								<li>
+									<h5>val: <a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setwidth" class="tsd-anchor"></a>
+					<h3>set<wbr>Width</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Width<span class="tsd-signature-symbol">(</span>layerId<span class="tsd-signature-symbol">: </span><a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a>, val<span class="tsd-signature-symbol">: </span><a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a>, index<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L252">generator.ts:252</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set width property for a given layer</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>layerId: <a href="../modules/_generator_.html#layerid" class="tsd-signature-type">LayerId</a></h5>
+								</li>
+								<li>
+									<h5>val: <a href="../modules/_master_config_.html#intproperty" class="tsd-signature-type">IntProperty</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current value</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setuptoken" class="tsd-anchor"></a>
+					<h3>setuptoken</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">setuptoken<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a>, contract<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, tokenHolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, masterId<span class="tsd-signature-symbol">: </span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a>, relativeTokenId<span class="tsd-signature-symbol">: </span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a>, minValues<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, maxValues<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, currValues<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L319">generator.ts:319</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Setup token on chain.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>api: <a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Chain api instance</p>
+									</div>
+								</li>
+								<li>
+									<h5>contract: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Art contract address</p>
+									</div>
+								</li>
+								<li>
+									<h5>tokenHolder: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Token holder address</p>
+									</div>
+								</li>
+								<li>
+									<h5>masterId: <a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Master token id</p>
+									</div>
+								</li>
+								<li>
+									<h5>relativeTokenId: <a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer token id relate to the master token id</p>
+									</div>
+								</li>
+								<li>
+									<h5>minValues: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Minimum values</p>
+									</div>
+								</li>
+								<li>
+									<h5>maxValues: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Maximum values</p>
+									</div>
+								</li>
+								<li>
+									<h5>currValues: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Current values</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="updatetoken" class="tsd-anchor"></a>
+					<h3>updatetoken</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">updatetoken<span class="tsd-signature-symbol">(</span>api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a>, contract<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, tokenHolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, masterId<span class="tsd-signature-symbol">: </span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a>, relativeTokenId<span class="tsd-signature-symbol">: </span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a>, levers<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, newValues<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/3bb9854/src/generator.ts#L350">generator.ts:350</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Update token on chain.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>api: <a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Chain api instance</p>
+									</div>
+								</li>
+								<li>
+									<h5>contract: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Art contract address</p>
+									</div>
+								</li>
+								<li>
+									<h5>tokenHolder: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Token holder address</p>
+									</div>
+								</li>
+								<li>
+									<h5>masterId: <a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Master token id</p>
+									</div>
+								</li>
+								<li>
+									<h5>relativeTokenId: <a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Layer token id relate to the master token id</p>
+									</div>
+								</li>
+								<li>
+									<h5>levers: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>List of lever id</p>
+									</div>
+								</li>
+								<li>
+									<h5>newValues: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>List of new value corresponding to the lever id at the same index of <code>levers</code></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_blockchain_datatype_.html">&quot;blockchain/datatype&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_blockchain_eos_.html">&quot;blockchain/eos&quot;</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_generator_.html">&quot;generator&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_loader_interface_.html">&quot;loader/interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_loader_ipfs_loader_.html">&quot;loader/ipfs_<wbr>loader&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_master_config_.html">&quot;master_<wbr>config&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_render_.html">&quot;render&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
+						<a href="_generator_.generator.html" class="tsd-kind-icon">Generator</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="_generator_.generator.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_generator_.generator.html#config" class="tsd-kind-icon">config</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_generator_.generator.html#tokenlevernum" class="tsd-kind-icon">token<wbr>Lever<wbr>Num</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_generator_.generator.html#masterconfig" class="tsd-kind-icon">master<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#addattributes" class="tsd-kind-icon">add<wbr>Attributes</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#addpurelayer" class="tsd-kind-icon">add<wbr>Pure<wbr>Layer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#addstateslayer" class="tsd-kind-icon">add<wbr>States<wbr>Layer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#addstatesoptions" class="tsd-kind-icon">add<wbr>States<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#availabletokenid" class="tsd-kind-icon">available<wbr>Token<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_generator_.generator.html#collectlayertoken" class="tsd-kind-icon">collect<wbr>Layer<wbr>Token</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_generator_.generator.html#collecttokens" class="tsd-kind-icon">collect<wbr>Tokens</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#getlevernum" class="tsd-kind-icon">get<wbr>Lever<wbr>Num</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#initialize" class="tsd-kind-icon">initialize</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#mintartwork" class="tsd-kind-icon">mint<wbr>Artwork</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setanchor" class="tsd-kind-icon">set<wbr>Anchor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setattributes" class="tsd-kind-icon">set<wbr>Attributes</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setcolor" class="tsd-kind-icon">set<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setconfig" class="tsd-kind-icon">set<wbr>Config</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setfixedposition" class="tsd-kind-icon">set<wbr>Fixed<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setfixedrotation" class="tsd-kind-icon">set<wbr>Fixed<wbr>Rotation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setheight" class="tsd-kind-icon">set<wbr>Height</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setlayout" class="tsd-kind-icon">set<wbr>Layout</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setmirror" class="tsd-kind-icon">set<wbr>Mirror</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setorbitrotation" class="tsd-kind-icon">set<wbr>Orbit<wbr>Rotation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setrelativeposition" class="tsd-kind-icon">set<wbr>Relative<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setscale" class="tsd-kind-icon">set<wbr>Scale</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setwidth" class="tsd-kind-icon">set<wbr>Width</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#setuptoken" class="tsd-kind-icon">setuptoken</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_generator_.generator.html#updatetoken" class="tsd-kind-icon">updatetoken</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="../modules/_generator_.html#layerid" class="tsd-kind-icon">Layer<wbr>Id</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="../modules/_generator_.html#cid" class="tsd-kind-icon">cid</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

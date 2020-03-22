@@ -41,14 +41,28 @@ export default class Generator {
     this.config = config;
   }
 
+  /**
+   * Set multiple attributes of basic config info.
+   * @param attrs Artwork attributes
+   */
   setAttributes(attrs: Array<Attribute>) {
     this.config.attributes = attrs;
   }
 
+  /**
+   * Append a list of attributes to the config.
+   * @param attrs Artwork attributes
+   */
   addAttributes(attrs: Array<Attribute>) {
     this.config.attributes = this.config.attributes.concat(attrs);
   }
 
+  /**
+   * Set layout of artwork.
+   * @param type Layout type name
+   * @param version Layout version
+   * @param layers Layers the layout holds. Default empty array.
+   */
   setLayout(type: string, version: number, layers: Array<Layer> = []) {
     this.config.layout = {
       type,
@@ -117,8 +131,8 @@ export default class Generator {
 
   /**
    * Set fixed position for a given layer
-   * @param layer 
-   * @param val 
+   * @param layerId Layer id 
+   * @param val Position coordinate
    * @param index Index of `layer.states.options`
    */
   setFixedPosition(layerId: LayerId, val: PositionType, index?: number) {
@@ -132,8 +146,8 @@ export default class Generator {
 
   /**
    * Set relative position for a given layer
-   * @param layerId 
-   * @param val 
+   * @param layerId Layer id
+   * @param val Positoin coordiante
    */
   setRelativePosition(layerId: LayerId, val: PositionType, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -146,8 +160,8 @@ export default class Generator {
 
   /**
    * Set fixed rotaton degree for a given layer
-   * @param layerId
-   * @param val 
+   * @param layerId Layer id
+   * @param val Current value
    */
   setFixedRotation(layerId: LayerId, val: IntProperty, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -160,8 +174,8 @@ export default class Generator {
 
   /**
    * Set orbit rotation degree for a given layer
-   * @param layerId 
-   * @param val 
+   * @param layerId Layer id
+   * @param val Current value
    */
   setOrbitRotation(layerId: LayerId, val: IntProperty, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -174,8 +188,8 @@ export default class Generator {
 
   /**
    * Set scale factor for a given layer
-   * @param layerId 
-   * @param val 
+   * @param layerId Layer id
+   * @param val Current value
    */
   setScale(layerId: LayerId, val: IntProperty, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -188,8 +202,8 @@ export default class Generator {
 
   /**
    * Set mirror transition for a given layer
-   * @param layerId 
-   * @param val 
+   * @param layerId Layer id
+   * @param val Current value
    */
   setMirror(layerId: LayerId, val: MirrorType, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -202,8 +216,8 @@ export default class Generator {
 
   /**
    * Set visible status for a given layer
-   * @param layerId 
-   * @param val 
+   * @param layerId Layer id
+   * @param val Current value
    */
   setVisible(layerId: LayerId, val: IntProperty, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -216,9 +230,9 @@ export default class Generator {
 
   /**
    * Set color scheme for a given layer
-   * @param layerId 
-   * @param color 
-   * @param val 
+   * @param layerId Layer id
+   * @param color Color scheme type
+   * @param val Current color value
    */
   setColor(layerId: LayerId, color: Color, val: IntProperty, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -232,8 +246,8 @@ export default class Generator {
 
   /**
    * Set width property for a given layer
-   * @param layer 
-   * @param val 
+   * @param layer Layer id
+   * @param val Current value
    */
   setWidth(layerId: LayerId, val: IntProperty, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -246,8 +260,8 @@ export default class Generator {
 
   /**
    * Set height property for a given layer
-   * @param layer 
-   * @param val 
+   * @param layer Layer id
+   * @param val Current value
    */
   setHeight(layerId: LayerId, val: IntProperty, index?: number) {
     let layer: Layer = this.config.layout.layers.find(l => l.id === layerId);
@@ -275,19 +289,33 @@ export default class Generator {
   /**
    * Mint artwork to artist on chain. All posible layer tokens will be 
    * issued to given issuer at first.
-   * @param contract Art asset contract address
    * @param api Chain api instance
+   * @param contract Art contract address
+   * @param artist Artist of artwork
+   * @param issuer Issuer of tokens
+   * @param cid Master config cid of artwork
    */
-  async mintArtwork(api: ChainAPI, contract: string, artist: string, issuer: string) {
+  async mintArtwork(api: ChainAPI, contract: string, artist: string, issuer: string, configCid: string) {
     this.collectTokens();
     try {
       const tokens = Array.from(this.tokenLeverNum.keys());
-      await api.mintArtwork(contract, issuer, artist, this.config.image, tokens.map(_ => issuer))
+      await api.mintArtwork(contract, issuer, artist, configCid, tokens.map(_ => issuer))
     } catch (e) {
       throw new Error(`failed to mint artwork on chain: ${e.message}`);
     }
   }
 
+  /**
+   * Setup token on chain.
+   * @param api Chain api instance
+   * @param contract Art contract address
+   * @param tokenHolder Token holder address
+   * @param masterId  Master token id
+   * @param relativeTokenId  Layer token id relate to the master token id
+   * @param minValues Minimum values
+   * @param maxValues Maximum values
+   * @param currValues Current values
+   */
   async setuptoken(api: ChainAPI, contract: string, tokenHolder: string, masterId: TokenId, relativeTokenId: TokenId, minValues: number[], maxValues: number[], currValues: number[]) {
     this.collectTokens();
     if (minValues.length !== maxValues.length || maxValues.length !== currValues.length) {
@@ -309,6 +337,16 @@ export default class Generator {
     }
   }
 
+  /**
+   * Update token on chain.
+   * @param api Chain api instance
+   * @param contract Art contract address
+   * @param tokenHolder Token holder address
+   * @param masterId Master token id
+   * @param relativeTokenId Layer token id relate to the master token id
+   * @param levers List of lever id
+   * @param newValues List of new value corresponding to the lever id at the same index of `levers`
+   */
   async updatetoken(api: ChainAPI, contract: string, tokenHolder: string, masterId: TokenId, relativeTokenId: TokenId, levers: number[], newValues: number[]) {
     try {
       await api.updatetoken(contract, tokenHolder, masterId + relativeTokenId, levers, newValues);

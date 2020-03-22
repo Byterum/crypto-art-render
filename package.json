@@ -6,7 +6,8 @@
   "scripts": {
     "prepare": "npm run build",
     "test": "jest",
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -p tsconfig.json",
+    "build-docs": "typedoc --out docs src"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,8 @@
     "eosjs": "^20.0.3",
     "jimp": "^0.9.5",
     "nft-resolver": "^1.2.5",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "https-proxy-agent": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
@@ -35,11 +37,7 @@
     "jest": "^25.1.0",
     "jest-fetch-mock": "^3.0.3",
     "ts-jest": "^25.2.1",
+    "typedoc": "^0.17.3",
     "typescript": "^3.8.3"
-  },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "dist/**/*.js"
-    ]
   }
 }
