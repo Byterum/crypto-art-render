@@ -123,7 +123,7 @@ export default class EosAPI implements ChainAPI {
       return token.curr_values[leverId]
     }
 
-    return undefined;
+    return 0;
   }
 
   async mintArtwork(contract: string, issuer: string, artist: string, uri: string, collaborators: Array<string>) {
