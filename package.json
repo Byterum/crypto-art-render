@@ -1,13 +1,13 @@
 {
   "name": "crypto-art-render",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "Magic render of programmable art.",
   "main": "dist/index.js",
   "scripts": {
     "prepare": "npm run build",
     "test": "jest",
     "build": "tsc -p tsconfig.json",
-    "build-docs": "typedoc --out docs src"
+    "build-docs": "typedoc --out docs src && touch docs/.nojekyll"
   },
   "repository": {
     "type": "git",

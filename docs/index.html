@@ -78,7 +78,95 @@
 				<a href="#master-config" id="master-config" style="color: inherit; text-decoration: none;">
 					<h2>Master Config</h2>
 				</a>
-				<p>TODO</p>
+				<p>Master config defines <strong>the rule of rendering</strong> for the artwork.</p>
+				<p>A typical config data structure is shown below:</p>
+				<ul>
+					<li><strong>name</strong> - Artwork name.</li>
+					<li><strong>description</strong> - Artwork description.</li>
+					<li><strong>image</strong> - URI of artwork master.</li>
+					<li><strong>attributes</strong> - List of basic meta info.<ul>
+							<li>trait_type - Attribute key name Like <code>Artist</code> or <code>Layer Count</code>.</li>
+							<li>value - Attribute value string.</li>
+						</ul>
+					</li>
+					<li><strong>layout</strong> - Layout of layers.</li>
+				</ul>
+				<a href="#intproperty" id="intproperty" style="color: inherit; text-decoration: none;">
+					<h3>IntProperty</h3>
+				</a>
+				<p>This type tells the property can be controlled by <strong>layer token</strong> or just a pure integer.</p>
+				<p>In typescript, we define:</p>
+				<pre><code class="language-javascript">type IntProperty =
+  | {
+      <span class="hljs-string">"token-id"</span>: number,
+      <span class="hljs-string">"lever-id"</span>: number
+    }
+  | number;</code></pre>
+				<ul>
+					<li>token-id - Control layer token id on chain.</li>
+					<li>lever-id - Lever index of values from a layer token.</li>
+				</ul>
+				<a href="#layeroption" id="layeroption" style="color: inherit; text-decoration: none;">
+					<h3>LayerOption</h3>
+				</a>
+				<p>A layer option defines an option of a layer that token holder can choose.</p>
+				<ul>
+					<li><p><strong>uri</strong> - Layer resource URI, usually IPFS Cid of image.</p>
+					</li>
+					<li><p><strong>label</strong> - Layer label.</p>
+					</li>
+					<li><p><strong>anchor</strong> - optional. Anchor point id.</p>
+					</li>
+					<li><p><strong>fixed-position</strong> - optional. Fix position of layer at the artwork.</p>
+						<ul>
+							<li>x (IntProperty)</li>
+							<li>y (IntProperty)</li>
+						</ul>
+					</li>
+					<li><p><strong>relative-position</strong> - optional. Relative position of layer <strong>with the coordinate of</strong> the anchor layer.</p>
+						<ul>
+							<li>x (IntProperty)</li>
+							<li>y (IntProperty)</li>
+						</ul>
+					</li>
+					<li><p><strong>fixed-rotation</strong> (IntProperty) - optional. Fix rotation degree.</p>
+					</li>
+					<li><p><strong>orbit-rotation</strong> (IntPropery) - optional. Orbit rotation degree around the anchor provided by the layer.</p>
+					</li>
+					<li><p><strong>mirror</strong> (IntPropery) - optional. Mirror transition. Value result will only be <code>0</code> or <code>1</code>.</p>
+					</li>
+					<li><p><strong>visible</strong> (IntPropery) - optional. Is layer visible. Value result will only be <code>0</code> or <code>1</code>.</p>
+					</li>
+					<li><p><strong>finalCenterX</strong> (number) - Not pre-defined. Final center coordinate x of layer. This property will be filled during rendering process.</p>
+					</li>
+					<li><p><strong>finalCenterY</strong> (number) - Not pre-defined. Final center coordinate y of layer. This property will be filled during rendering process.</p>
+					</li>
+					<li><p><strong>active</strong> (boolean) - Not pre-defined. Tell the layer can be used as anchor point or not.</p>
+					</li>
+					<li><p><strong>color</strong> - Color scheme of layer</p>
+						<ul>
+							<li>red (IntProperty)</li>
+							<li>green (IntProperty)</li>
+							<li>blue (IntProperty)</li>
+							<li>alpha (IntProperty)</li>
+							<li>hue (IntProperty)</li>
+						</ul>
+					</li>
+				</ul>
+				<a href="#layer" id="layer" style="color: inherit; text-decoration: none;">
+					<h3>Layer</h3>
+				</a>
+				<p><strong>Inherit from LayerOption</strong>, with more fields like:</p>
+				<ul>
+					<li><strong>id</strong> - Required. Layer id</li>
+					<li><strong>states</strong> - Optional. Multiple state options of layer.<ul>
+							<li>options <code>Array&lt;LayerOption&gt;</code> - list of layer option</li>
+							<li>token-id - Token that control the value of option index.</li>
+							<li>lever-id - Lever index of values</li>
+						</ul>
+					</li>
+				</ul>
+				<p>Please see a typical <a href="master_example.json">master config example</a>.</p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
@@ -86,17 +174,19 @@
 					<h3>Generator</h3>
 				</a>
 				<p>Module <code>generator</code> is used to generate artwokr config, define and fill necessary fields more easily.</p>
-				<p>Check out the <a href="%22./docs/classes/_generator_.generator.html%22">API</a>.</p>
+				<p>Check out the <a href="https://mobiusgame.github.io/crypto-art-render/classes/_generator_.generator.html">API</a>.</p>
 				<p><strong>Initialize empty config</strong></p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Generator } <span class="hljs-keyword">from</span> <span class="hljs-string">"crypto-art-render"</span>;
 
 <span class="hljs-keyword">const</span> generator = <span class="hljs-keyword">new</span> Generator();
+<span class="hljs-comment">// Initialize master config with basic info</span>
 generator.intialize(
   <span class="hljs-string">"name"</span>,
   <span class="hljs-string">"desc"</span>,
   <span class="hljs-string">"QmX71QqNunRjE3Sdj78vDGrDyeT3dEMp9xrrQPSx5JCBTQ"</span>
 );
 
+<span class="hljs-comment">// Set attributes</span>
 generator.setAttributes([
   {
     [KEY_TRAIT_TYPE]: <span class="hljs-string">"Artist"</span>,
@@ -136,7 +226,7 @@ generator.updatetoken(eosApi, <span class="hljs-string">"contract"</span>, <span
 					<h3>Render</h3>
 				</a>
 				<p>Module <code>Render</code> is used to render image from master config.</p>
-				<p>Check out the <a href="%22./docs/classes/_render_.render.html%22">API</a>.</p>
+				<p>Check out the <a href="https://mobiusgame.github.io/crypto-art-render/classes/_render_.render.html">API</a>.</p>
 				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Render, IpfsLoader } <span class="hljs-keyword">from</span> <span class="hljs-string">"crypto-art-render"</span>;
 
 <span class="hljs-comment">// Initialize render with ipfs loader, interacting with local IPFS node</span>

@@ -2,6 +2,18 @@
 
 Magic render of crypto art.
 
+## Install
+
+```
+npm install crypto-art-render -S
+```
+
+or
+
+```
+yarn install crypto-art-render
+```
+
 ## Update
 
 - Allow artwork with only 1 master layer.
@@ -9,7 +21,7 @@ Magic render of crypto art.
 
 ## Master Config
 
-Master config define **the rule of rendering** for the artwork.
+Master config defines **the rule of rendering** for the artwork.
 
 A typical config data structure is shown below:
 
@@ -25,17 +37,19 @@ A typical config data structure is shown below:
 
 This type tells the property can be controlled by **layer token** or just a pure integer.
 
-In typescript, we define: 
+In typescript, we define:
 
 ```javascript
-type IntProperty = {
-  "token-id":number;
-  "lever-id":number;
-} | number;
+type IntProperty =
+  | {
+      "token-id": number,
+      "lever-id": number
+    }
+  | number;
 ```
 
 - token-id - Control layer token id on chain.
-- lever-id - Lever index of values  from a layer token.
+- lever-id - Lever index of values from a layer token.
 
 ### LayerOption
 
@@ -45,16 +59,16 @@ A layer option defines an option of a layer that token holder can choose.
 - **label** - Layer label.
 - **anchor** - optional. Anchor point id.
 - **fixed-position** - optional. Fix position of layer at the artwork.
-  - x (IntProperty) 
-  - y (IntProperty)  
+  - x (IntProperty)
+  - y (IntProperty)
 - **relative-position** - optional. Relative position of layer **with the coordinate of** the anchor layer.
   - x (IntProperty)
   - y (IntProperty)
-- **fixed-rotation **(IntProperty) - optional. Fix rotation degree.
+- **fixed-rotation** (IntProperty) - optional. Fix rotation degree.
 
 - **orbit-rotation** (IntPropery) - optional. Orbit rotation degree around the anchor provided by the layer.
-- **mirror** (IntPropery) - optional. Mirror transition. Value result will only be `0`  or  `1`.
-- **visible** (IntPropery) - optional. Is layer visible. Value result will only be `0` or  `1`.
+- **mirror** (IntPropery) - optional. Mirror transition. Value result will only be `0` or `1`.
+- **visible** (IntPropery) - optional. Is layer visible. Value result will only be `0` or `1`.
 - **finalCenterX** (number) - Not pre-defined. Final center coordinate x of layer. This property will be filled during rendering process.
 - **finalCenterY** (number) - Not pre-defined. Final center coordinate y of layer. This property will be filled during rendering process.
 - **active** (boolean) - Not pre-defined. Tell the layer can be used as anchor point or not.
@@ -75,8 +89,6 @@ A layer option defines an option of a layer that token holder can choose.
   - token-id - Token that control the value of option index.
   - lever-id - Lever index of values
 
-
-
 Please see a typical [master config example](master_example.json).
 
 ## Usage
@@ -85,7 +97,7 @@ Please see a typical [master config example](master_example.json).
 
 Module `generator` is used to generate artwokr config, define and fill necessary fields more easily.
 
-Check out the [API]("./docs/classes/_generator_.generator.html").
+Check out the [API](https://mobiusgame.github.io/crypto-art-render/classes/_generator_.generator.html).
 
 **Initialize empty config**
 
@@ -142,7 +154,7 @@ generator.updatetoken(eosApi, "contract", "eosio", 1, 1, [0], [145]);
 
 Module `Render` is used to render image from master config.
 
-Check out the [API]("./docs/classes/_render_.render.html").
+Check out the [API](https://mobiusgame.github.io/crypto-art-render/classes/_render_.render.html).
 
 ```javascript
 import { Render, IpfsLoader } from "crypto-art-render";
