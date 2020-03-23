@@ -9,7 +9,75 @@ Magic render of crypto art.
 
 ## Master Config
 
-TODO
+Master config define **the rule of rendering** for the artwork.
+
+A typical config data structure is shown below:
+
+- **name** - Artwork name.
+- **description** - Artwork description.
+- **image** - URI of artwork master.
+- **attributes** - List of basic meta info.
+  - trait_type - Attribute key name Like `Artist` or `Layer Count`.
+  - value - Attribute value string.
+- **layout** - Layout of layers.
+
+### IntProperty
+
+This type tells the property can be controlled by **layer token** or just a pure integer.
+
+In typescript, we define: 
+
+```javascript
+type IntProperty = {
+  "token-id":number;
+  "lever-id":number;
+} | number;
+```
+
+- token-id - Control layer token id on chain.
+- lever-id - Lever index of values  from a layer token.
+
+### LayerOption
+
+A layer option defines an option of a layer that token holder can choose.
+
+- **uri** - Layer resource URI, usually IPFS Cid of image.
+- **label** - Layer label.
+- **anchor** - optional. Anchor point id.
+- **fixed-position** - optional. Fix position of layer at the artwork.
+  - x (IntProperty) 
+  - y (IntProperty)  
+- **relative-position** - optional. Relative position of layer **with the coordinate of** the anchor layer.
+  - x (IntProperty)
+  - y (IntProperty)
+- **fixed-rotation **(IntProperty) - optional. Fix rotation degree.
+
+- **orbit-rotation** (IntPropery) - optional. Orbit rotation degree around the anchor provided by the layer.
+- **mirror** (IntPropery) - optional. Mirror transition. Value result will only be `0`  or  `1`.
+- **visible** (IntPropery) - optional. Is layer visible. Value result will only be `0` or  `1`.
+- **finalCenterX** (number) - Not pre-defined. Final center coordinate x of layer. This property will be filled during rendering process.
+- **finalCenterY** (number) - Not pre-defined. Final center coordinate y of layer. This property will be filled during rendering process.
+- **active** (boolean) - Not pre-defined. Tell the layer can be used as anchor point or not.
+- **color** - Color scheme of layer
+  - red (IntProperty)
+  - green (IntProperty)
+  - blue (IntProperty)
+  - alpha (IntProperty)
+  - hue (IntProperty)
+
+### Layer
+
+**Inherit from LayerOption**, with more fields like:
+
+- **id** - Required. Layer id
+- **states** - Optional. Multiple state options of layer.
+  - options `Array<LayerOption>` - list of layer option
+  - token-id - Token that control the value of option index.
+  - lever-id - Lever index of values
+
+
+
+Please see a typical [master config example](master_example.json).
 
 ## Usage
 
@@ -25,12 +93,14 @@ Check out the [API]("./docs/classes/_generator_.generator.html").
 import { Generator } from "crypto-art-render";
 
 const generator = new Generator();
+// Initialize master config with basic info
 generator.intialize(
   "name",
   "desc",
   "QmX71QqNunRjE3Sdj78vDGrDyeT3dEMp9xrrQPSx5JCBTQ"
 );
 
+// Set attributes
 generator.setAttributes([
   {
     [KEY_TRAIT_TYPE]: "Artist",

@@ -65,18 +65,31 @@ export interface ColorType {
 
 // Main layer interface
 export interface LayerOption {
+  // layer uri
   uri?: string;
+  // layer label
   label?: string;
+  // anchor layer id
   [KEY_ANCHOR]?: string;
+  // fixed position of layer
   [KEY_FIXED_POS]?: PositionType;
+  // fixed rotation degree of layer
   [KEY_ROTATION]?: IntProperty;
+  // mirror transition
   [KEY_MIRROR]?: MirrorType;
+  // relative position of layer around the anchor layer
   [KEY_RELATIVE_POS]?: PositionType;
+  // is layer visible
   [KEY_VISIBLE]?: IntProperty;
+  // final center x of layer. Not pre-defined
   finalCenterX?: number;
+  // final center y of layer. Not pre-defined
   finalCenterY?: number;
+  // if layer is rendered complete, set true
   active?: boolean;
+  // layer color scheme
   [KEY_COLOR]?: ColorType;
+  // layer z-index (will be supported in the future)
   zIndex?: number;
 }
 
