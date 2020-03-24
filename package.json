@@ -21,10 +21,10 @@
   "homepage": "https://github.com/MobiusGame/programmable-art-render#readme",
   "dependencies": {
     "eosjs": "^20.0.3",
+    "https-proxy-agent": "^5.0.0",
     "jimp": "^0.9.5",
-    "nft-resolver": "^1.2.5",
-    "node-fetch": "^2.6.0",
-    "https-proxy-agent": "^5.0.0"
+    "nft-resolver": "^1.2.6",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
