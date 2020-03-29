@@ -100,13 +100,15 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_render_.render.html#api" class="tsd-kind-icon">api</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_render_.render.html#bc" class="tsd-kind-icon">bc</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_render_.render.html#loader" class="tsd-kind-icon">loader</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_render_.render.html#rendermap" class="tsd-kind-icon">render<wbr>Map</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_render_.render.html#currentstate" class="tsd-kind-icon">current<wbr>State</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_render_.render.html#loadimagefromipfs" class="tsd-kind-icon">load<wbr>Image<wbr>FromIPFS</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_render_.render.html#loadmasterconfig" class="tsd-kind-icon">load<wbr>Master<wbr>Config</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_render_.render.html#loadmasterconfig" class="tsd-kind-icon">load<wbr>Master<wbr>Config</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_render_.render.html#readvaluefromchain" class="tsd-kind-icon">read<wbr>Value<wbr>From<wbr>Chain</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_render_.render.html#render" class="tsd-kind-icon">render</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_render_.render.html#rendercomposite" class="tsd-kind-icon">render<wbr>Composite</a></li>
@@ -123,13 +125,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Render<span class="tsd-signature-symbol">(</span>loader<span class="tsd-signature-symbol">: </span><a href="../interfaces/_loader_interface_.loader.html" class="tsd-signature-type">Loader</a>, endpoint<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, platform<span class="tsd-signature-symbol">?: </span><a href="../enums/_blockchain_datatype_.platform.html" class="tsd-signature-type">Platform</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_render_.render.html" class="tsd-signature-type">Render</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Render<span class="tsd-signature-symbol">(</span>loader<span class="tsd-signature-symbol">: </span><a href="../interfaces/_loader_interface_.loader.html" class="tsd-signature-type">Loader</a>, api<span class="tsd-signature-symbol">: </span><a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a>, platform<span class="tsd-signature-symbol">?: </span><a href="../enums/_blockchain_datatype_.platform.html" class="tsd-signature-type">Platform</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_render_.render.html" class="tsd-signature-type">Render</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L14">render.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L55">render.ts:55</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -138,7 +140,7 @@
 									<h5>loader: <a href="../interfaces/_loader_interface_.loader.html" class="tsd-signature-type">Loader</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> endpoint: <span class="tsd-signature-type">string</span></h5>
+									<h5>api: <a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> platform: <a href="../enums/_blockchain_datatype_.platform.html" class="tsd-signature-type">Platform</a><span class="tsd-signature-symbol"> = Platform.EOS</span></h5>
@@ -157,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">api<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_blockchain_datatype_.chainapi.html" class="tsd-signature-type">ChainAPI</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L12">render.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L50">render.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,7 +169,7 @@
 					<div class="tsd-signature tsd-kind-icon">bc<span class="tsd-signature-symbol">:</span> <a href="../enums/_blockchain_datatype_.platform.html" class="tsd-signature-type">Platform</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L13">render.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L51">render.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,13 +179,53 @@
 					<div class="tsd-signature tsd-kind-icon">loader<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_loader_interface_.loader.html" class="tsd-signature-type">Loader</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L14">render.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L52">render.ts:52</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="rendermap" class="tsd-anchor"></a>
+					<h3>render<wbr>Map</h3>
+					<div class="tsd-signature tsd-kind-icon">render<wbr>Map<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a><span class="tsd-signature-symbol">, </span><a href="_render_.rendermap.html" class="tsd-signature-type">RenderMap</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L55">render.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="currentstate" class="tsd-anchor"></a>
+					<h3>current<wbr>State</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">current<wbr>State<span class="tsd-signature-symbol">(</span>masterId<span class="tsd-signature-symbol">: </span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L361">render.ts:361</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns master token id of</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>masterId: <a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="loadimagefromipfs" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> load<wbr>Image<wbr>FromIPFS</h3>
@@ -194,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L70">render.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L106">render.ts:106</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -207,17 +249,17 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="loadmasterconfig" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> load<wbr>Master<wbr>Config</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<h3>load<wbr>Master<wbr>Config</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">load<wbr>Master<wbr>Config<span class="tsd-signature-symbol">(</span>contract<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, masterId<span class="tsd-signature-symbol">: </span><a href="../modules/_blockchain_datatype_.html#tokenid" class="tsd-signature-type">TokenId</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_master_config_.masterconfig.html" class="tsd-signature-type">MasterConfig</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L33">render.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L69">render.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -250,7 +292,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L142">render.ts:142</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L178">render.ts:178</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -279,7 +321,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L80">render.ts:80</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L116">render.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -316,7 +358,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L66">render.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L102">render.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -353,7 +395,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L158">render.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L204">render.ts:204</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -391,7 +433,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/01fa730/src/render.ts#L56">render.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/MobiusGame/crypto-art-render/blob/361bc63/src/render.ts#L92">render.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -467,10 +509,16 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_render_.render.html#loader" class="tsd-kind-icon">loader</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_render_.render.html#rendermap" class="tsd-kind-icon">render<wbr>Map</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_render_.render.html#currentstate" class="tsd-kind-icon">current<wbr>State</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_render_.render.html#loadimagefromipfs" class="tsd-kind-icon">load<wbr>Image<wbr>FromIPFS</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_render_.render.html#loadmasterconfig" class="tsd-kind-icon">load<wbr>Master<wbr>Config</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
@@ -492,6 +540,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_render_.rendermap.html" class="tsd-kind-icon">Render<wbr>Map</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

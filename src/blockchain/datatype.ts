@@ -14,7 +14,6 @@ export enum Platform {
 
 export interface ChainAPI {
   cacheMasterToken: Map<TokenId, Token>;
-  cacheToken: Map<TokenId, Map<LeverId, TokenSingleLever>>;
   getAvailableTokenId(contract: string): Promise<TokenId>;
   getMasterToken(contract: string, tokenId: TokenId): Promise<Token>;
   getCurrValueByLeverId(contract: string, leverId: LeverId, tokenId: TokenId): Promise<number>;

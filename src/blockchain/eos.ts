@@ -24,7 +24,6 @@ export const defaultEosAPIOption: EosAPIOption = {
 
 export default class EosAPI implements ChainAPI {
   cacheMasterToken: Map<TokenId, Token>;
-  cacheToken: Map<TokenId, Map<LeverId, TokenSingleLever>>;
   api: Api;
 
   constructor(options?: EosAPIOption) {
@@ -33,7 +32,6 @@ export default class EosAPI implements ChainAPI {
     const signatureProvider = new JsSignatureProvider([opts.privKey])
     this.api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
     this.cacheMasterToken = new Map<TokenId, Token>();
-    this.cacheToken = new Map<TokenId, Map<LeverId, TokenSingleLever>>();
   }
 
   /**
@@ -52,12 +50,13 @@ export default class EosAPI implements ChainAPI {
     if (resp.rows.length > 0) {
       // set cache
       resp.rows.forEach(row => {
-        if (row.id === row.master) {
+        if (row.id === row.master_token_id) {
           // is master token
-          this.cacheMasterToken.set(row.id, row);
-        } else {
-          // is layer token
-          this.cacheToken.set(row.id, row);
+          this.cacheMasterToken.set(row.id, {
+            id: row.id,
+            uri: row.uri,
+            symbol: row.value.split(' ')[1]
+          });
         }
       })
       const last = resp.rows[resp.rows.length - 1];
@@ -93,15 +92,6 @@ export default class EosAPI implements ChainAPI {
   }
 
   async getCurrValueByLeverId(contract: string, leverId: LeverId, tokenId: TokenId): Promise<number> {
-    let cache = this.cacheToken.get(tokenId);
-    if (!cache) {
-      cache = new Map<LeverId, TokenSingleLever>();
-      this.cacheToken.set(tokenId, cache);
-    }
-    let lever = cache.get(leverId);
-    if (lever) {
-      return Number(lever.currValue);
-    }
     const resp = await this.api.rpc.get_table_rows({
       json: true,
       code: contract,
@@ -112,15 +102,7 @@ export default class EosAPI implements ChainAPI {
     })
 
     if (resp.rows.length > 0) {
-      const token = resp.rows[0];
-      token.curr_values.forEach((val, i) => {
-        cache.set(i, {
-          minValue: token.min_values[i],
-          maxValue: token.max_values[i],
-          currValue: val
-        })
-      })
-      return token.curr_values[leverId]
+      return resp.rows[0].curr_values[leverId];
     }
 
     return 0;

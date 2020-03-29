@@ -40,12 +40,10 @@ This type tells the property can be controlled by **layer token** or just a pure
 In typescript, we define:
 
 ```javascript
-type IntProperty =
-  | {
-      "token-id": number,
-      "lever-id": number
-    }
-  | number;
+type IntProperty = {
+    "token-id": number,
+    "lever-id": number
+  } or number;
 ```
 
 - token-id - Control layer token id on chain.
@@ -164,6 +162,10 @@ const render = new Render(
   new IpfsLoader({ endpoint: "http://127.0.0.1:8080" })
 );
 
+// load master config
+console.log(await render.loadMasterConfig("contract", masterTokenId));
+
+// render image
 const masterTokenId = 0;
 const masterImage = await render.renderMaster("contract", masterTokenId);
 const compositeImage = await render.renderComposite("contract", masterTokenId);
@@ -172,6 +174,10 @@ const compositeImage = await render.renderComposite("contract", masterTokenId);
 
 await masterImage.writeAsync("master.png");
 await compositeImage.writeAsync("composite.png");
+
+// Get current state of a artwork. It will return the hash of current
+// values from layer tokens.
+render.currentState(masterTokenId);
 ```
 
 ## Test

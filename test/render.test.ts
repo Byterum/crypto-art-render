@@ -19,11 +19,11 @@ describe('test artwork render', () => {
   beforeAll(async () => {
     exampleConfig = JSON.parse(fs.readFileSync('test/config_example/example1.json').toString());
     gen = new Generator();
-    render = new Render(new IpfsLoader({ endpoint: localIPFSEndpoint }));
-
     // mint artwork
     const api = new EosAPI();
     gen.setConfig(exampleConfig);
+    render = new Render(new IpfsLoader({ endpoint: localIPFSEndpoint }), api);
+
     try {
       const minValues = [0, 0, -360];
       const maxValues = [3, 1800, 360];
@@ -46,11 +46,17 @@ describe('test artwork render', () => {
     await image.writeAsync('test/output/master-test.png');
   })
 
-  it('render composite layer of artwork by master token 0', async () => {
+  it('render composite layer of artwork bys master token 0', async () => {
     const image = await render.renderComposite(contract, masterId);
     if (image.getWidth() > 3000) {
       image.resize(720, Jimp.AUTO);
     }
     await image.writeAsync('test/output/composite-test.png');
+  })
+
+  it('get current state of image', () => {
+    const hash = render.currentState(0);
+    expect(hash.length).not.toBe(0);
+    console.log(hash);
   })
 })

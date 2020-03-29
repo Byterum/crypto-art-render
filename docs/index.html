@@ -68,6 +68,11 @@
 					<h1>crypto-art-render</h1>
 				</a>
 				<p>Magic render of crypto art.</p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<pre><code>npm <span class="hljs-keyword">install</span> crypto-art-render -S</code></pre><p>or</p>
+				<pre><code>yarn <span class="hljs-keyword">install</span> crypto-art-render</code></pre>
 				<a href="#update" id="update" style="color: inherit; text-decoration: none;">
 					<h2>Update</h2>
 				</a>
@@ -96,12 +101,10 @@
 				</a>
 				<p>This type tells the property can be controlled by <strong>layer token</strong> or just a pure integer.</p>
 				<p>In typescript, we define:</p>
-				<pre><code class="language-javascript">type IntProperty =
-  | {
-      <span class="hljs-string">"token-id"</span>: number,
-      <span class="hljs-string">"lever-id"</span>: number
-    }
-  | number;</code></pre>
+				<pre><code class="language-javascript">type IntProperty = {
+    <span class="hljs-string">"token-id"</span>: number,
+    <span class="hljs-string">"lever-id"</span>: number
+  } or number;</code></pre>
 				<ul>
 					<li>token-id - Control layer token id on chain.</li>
 					<li>lever-id - Lever index of values from a layer token.</li>
@@ -234,6 +237,10 @@ generator.updatetoken(eosApi, <span class="hljs-string">"contract"</span>, <span
   <span class="hljs-keyword">new</span> IpfsLoader({ <span class="hljs-attr">endpoint</span>: <span class="hljs-string">"http://127.0.0.1:8080"</span> })
 );
 
+<span class="hljs-comment">// load master config</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">await</span> render.loadMasterConfig(<span class="hljs-string">"contract"</span>, masterTokenId));
+
+<span class="hljs-comment">// render image</span>
 <span class="hljs-keyword">const</span> masterTokenId = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">const</span> masterImage = <span class="hljs-keyword">await</span> render.renderMaster(<span class="hljs-string">"contract"</span>, masterTokenId);
 <span class="hljs-keyword">const</span> compositeImage = <span class="hljs-keyword">await</span> render.renderComposite(<span class="hljs-string">"contract"</span>, masterTokenId);

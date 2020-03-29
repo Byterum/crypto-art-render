@@ -1,9 +1,47 @@
-import { TokenId, Platform, ChainAPI } from "./blockchain/datatype";
+import { TokenId, Platform, ChainAPI, Token, LeverId, TokenSingleLever } from "./blockchain/datatype";
 import { MasterConfig, KEY_STATES, KEY_TOKEN_ID, KEY_LEVER_ID, Layer, KEY_VISIBLE, ValueOnChain, KEY_WIDTH, KEY_HEIGHT, KEY_SCALE, KEY_FIXED_POS, KEY_ROTATION, KEY_MIRROR, KEY_ANCHOR, KEY_RELATIVE_POS, KEY_ORBIT_ROTATION, KEY_COLOR, Color } from "./master_config";
-import EosAPI from "./blockchain/eos";
 import Jimp from 'jimp';
 import { NftURI } from "nft-resolver";
 import Loader from "./loader/interface";
+import { sha3_256 } from 'js-sha3';
+
+// RenderMap is used to cache the value controlled by layer token 
+// of an image, and provides utilities to get hash of the current state.
+class RenderMap {
+  cacheToken: Map<TokenId, Map<LeverId, number>>;
+
+  constructor() {
+    this.cacheToken = new Map<TokenId, Map<LeverId, number>>();
+  }
+
+  set(tokenId: TokenId, leverId: LeverId, val: number) {
+    let leverMap = this.cacheToken.get(tokenId);
+    if (!leverMap) {
+      leverMap = new Map<LeverId, number>();
+      this.cacheToken.set(tokenId, leverMap);
+    }
+
+    leverMap.set(leverId, val);
+  }
+
+  get(tokenId: TokenId, leverId: LeverId): number {
+    const leverMap = this.cacheToken.get(tokenId);
+    if (!leverMap) return 0;
+    return leverMap.get(leverId) || 0;
+  }
+
+  hash(): string {
+    let str = '';
+    for (let [tokenId, levelMap] of this.cacheToken.entries()) {
+      str += tokenId;
+      levelMap = levelMap as Map<LeverId, number>;
+      for (let [levelId, val] of levelMap.entries()) {
+        str += `${levelId}:${val};`;
+      }
+    }
+    return sha3_256(str).slice(0, 12);
+  }
+}
 
 /**
  * Artwork render.
@@ -13,16 +51,14 @@ export default class Render {
   bc: Platform;
   loader: Loader;
 
-  constructor(loader: Loader, endpoint?: string, platform: Platform = Platform.EOS) {
+  // master token id => render map
+  renderMap: Map<TokenId, RenderMap>;
+
+  constructor(loader: Loader, api: ChainAPI, platform: Platform = Platform.EOS) {
     this.bc = platform;
-    if (platform === Platform.EOS) {
-      const opts = {} as any;
-      if (endpoint) opts.endpoint = endpoint;
-      this.api = new EosAPI(opts);
-    } else {
-      throw new Error('not support ETH');
-    }
+    this.api = api;
     this.loader = loader;
+    this.renderMap = new Map<TokenId, RenderMap>();
   }
 
   /**
@@ -30,7 +66,7 @@ export default class Render {
    * @param contract 
    * @param masterId 
    */
-  private async loadMasterConfig(contract: string, masterId: TokenId): Promise<MasterConfig> {
+  public async loadMasterConfig(contract: string, masterId: TokenId): Promise<MasterConfig> {
     const masterToken = await this.api.getMasterToken(contract, masterId);
     if (masterToken.symbol !== 'ART') {
       throw new Error('invalid token symbol, expected \'ART\'');
@@ -140,10 +176,20 @@ export default class Render {
 
   // load current value the token controls or just return integer value in object
   private async readValueFromChain(contract: string, masterId: TokenId, value: ValueOnChain | number) {
+    let renderMap = this.renderMap.get(masterId);
+    if (!renderMap) {
+      renderMap = new RenderMap();
+      this.renderMap.set(masterId, renderMap);
+    }
     if (typeof value === 'object') {
       const params = value as ValueOnChain
       if (this.bc === Platform.EOS) {
-        return await this.api.getCurrValueByLeverId(contract, params[KEY_LEVER_ID], masterId + params[KEY_TOKEN_ID]);
+        // token id from config is a relative id to master token id
+        const tokenId = masterId + params[KEY_TOKEN_ID];
+        const leverId = params[KEY_LEVER_ID];
+        const val = await this.api.getCurrValueByLeverId(contract, leverId, tokenId);
+        renderMap.set(tokenId, leverId, val);
+        return val || 0;
       } else if (this.bc === Platform.ETH) {
         throw new Error('Not support ethereum');
       } else {
@@ -306,5 +352,15 @@ export default class Render {
     }
 
     return currImage.composite(layerImage, x, y);
+  }
+
+  /**
+   * Returns master token id of 
+   * @param masterId 
+   */
+  public currentState(masterId: TokenId): string {
+    const renderMap = this.renderMap.get(masterId);
+    if (!renderMap) return '';
+    return renderMap.hash();
   }
 }
