@@ -46,7 +46,7 @@ class RenderMap {
 /**
  * Artwork render.
  */
-export default class Render {
+export class Render {
   api: ChainAPI;
   bc: Platform;
   loader: Loader;

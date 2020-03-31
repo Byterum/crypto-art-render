@@ -8,7 +8,7 @@ type LayerId = string;
  * Generator is used to generate standard master config, upload to 
  * ipfs network and get cid in one.
  */
-export default class Generator {
+export class Generator {
 
   private config: MasterConfig;
   // mapping relative-layer-token-id => max lever num

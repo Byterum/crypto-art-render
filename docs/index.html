@@ -248,7 +248,11 @@ generator.updatetoken(eosApi, <span class="hljs-string">"contract"</span>, <span
 <span class="hljs-comment">// Interact with result folloing the API of [Jimp](https://github.com/oliver-moran/jimp/tree/master/packages/jimp)</span>
 
 <span class="hljs-keyword">await</span> masterImage.writeAsync(<span class="hljs-string">"master.png"</span>);
-<span class="hljs-keyword">await</span> compositeImage.writeAsync(<span class="hljs-string">"composite.png"</span>);</code></pre>
+<span class="hljs-keyword">await</span> compositeImage.writeAsync(<span class="hljs-string">"composite.png"</span>);
+
+<span class="hljs-comment">// Get current state of a artwork. It will return the hash of current</span>
+<span class="hljs-comment">// values from layer tokens.</span>
+render.currentState(masterTokenId);</code></pre>
 				<a href="#test" id="test" style="color: inherit; text-decoration: none;">
 					<h2>Test</h2>
 				</a>
@@ -273,10 +277,19 @@ generator.updatetoken(eosApi, <span class="hljs-string">"contract"</span>, <span
 						<a href="modules/_blockchain_eos_.html">&quot;blockchain/eos&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/_blockchain_eth_.html">&quot;blockchain/eth&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_blockchain_index_.html">&quot;blockchain/index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/_generator_.html">&quot;generator&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_loader_index_.html">&quot;loader/index&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_loader_interface_.html">&quot;loader/interface&quot;</a>
