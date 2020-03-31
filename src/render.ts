@@ -2,7 +2,7 @@ import { TokenId, Platform, ChainAPI, Token, LeverId, TokenSingleLever } from ".
 import { MasterConfig, KEY_STATES, KEY_TOKEN_ID, KEY_LEVER_ID, Layer, KEY_VISIBLE, ValueOnChain, KEY_WIDTH, KEY_HEIGHT, KEY_SCALE, KEY_FIXED_POS, KEY_ROTATION, KEY_MIRROR, KEY_ANCHOR, KEY_RELATIVE_POS, KEY_ORBIT_ROTATION, KEY_COLOR, Color } from "./master_config";
 import Jimp from 'jimp';
 import { NftURI } from "nft-resolver";
-import Loader from "./loader/interface";
+import { Loader } from "./loader/interface";
 import { sha3_256 } from 'js-sha3';
 
 // RenderMap is used to cache the value controlled by layer token 

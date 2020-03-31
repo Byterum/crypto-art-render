@@ -1,3 +1,3 @@
-export default interface Loader {
+export interface Loader {
   loadFromUri(cid: string): Promise<Buffer>
 }

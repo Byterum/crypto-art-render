@@ -1,5 +1,6 @@
 import fetch from 'node-fetch'
 import { HttpsProxyAgent } from 'https-proxy-agent';
+import { Loader } from './interface';
 
 interface LoadOption {
   endpoint: string;
@@ -10,7 +11,7 @@ const defaultLoadOpts: LoadOption = {
   endpoint: 'https://ipfs.io',
 }
 
-export default class IpfsLoader {
+export default class IpfsLoader implements Loader {
   opt: LoadOption;
 
   constructor(opt?: LoadOption) {
