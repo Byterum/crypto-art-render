@@ -5,7 +5,8 @@ import {
   LeverId,
   CONTROL_TOKEN_TABLE,
   TOKEN_TABLE,
-  Token
+  Token,
+  ControlToken
 } from "./datatype";
 import { Api, JsonRpc } from 'eosjs';
 import { JsSignatureProvider } from 'eosjs/dist/eosjs-jssig';
@@ -87,6 +88,31 @@ export default class EosAPI implements ChainAPI {
       }
       this.cacheToken.set(tokenId, cache);
       return cache;
+    }
+    return null;
+  }
+
+  async getControlToken(contract: string, tokenId: TokenId): Promise<ControlToken> {
+    const resp = await this.api.rpc.get_table_rows({
+      json: true,
+      code: contract,
+      scope: contract,
+      table: CONTROL_TOKEN_TABLE,
+      lower_bound: tokenId,
+      limit: 1
+    })
+
+    if (resp.rows.length > 0) {
+      const token = resp.rows[0];
+      return {
+        id: token.id,
+        leversNum: token.levers_num,
+        isSetup: token.is_setup,
+        masterId: token.master_token_id,
+        minValues: token.min_values,
+        maxValues: token.max_values,
+        currValues: token.curr_values
+      }
     }
     return null;
   }

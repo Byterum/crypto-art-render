@@ -28,5 +28,15 @@ export interface Token {
   symbol: string;
 }
 
+export interface ControlToken {
+  id: TokenId;
+  leversNum: number;
+  isSetup: boolean;
+  masterId: TokenId;
+  minValues: number[];
+  maxValues: number[];
+  currValues: number[];
+}
+
 export const TOKEN_TABLE = 'tokens';
 export const CONTROL_TOKEN_TABLE = 'ctltokens';
