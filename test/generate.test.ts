@@ -1,5 +1,5 @@
 import { MasterConfig, KEY_TRAIT_TYPE, KEY_FIXED_POS, KEY_STATES } from "../src/master_config"
-import Generator from "../src/generator";
+import { Generator } from "../src/generator";
 import * as fs from 'fs';
 import EosAPI from "../src/blockchain/eos";
 import { ChainAPI } from "../src/blockchain/datatype";
@@ -150,7 +150,7 @@ describe('test artwork generator', () => {
     it('mint artwork on chain', async () => {
       masterId = await generator.availableTokenId(api, contract);
       await generator.mintArtwork(api, contract, 'eosio', 'eosio', cid);
-      const token = await api.getMasterToken(contract, masterId);
+      const token = await api.getToken(contract, masterId);
       expect(token.id).toBe(masterId);
       const reslovedUri = new NftURI(token.uri);
       expect(reslovedUri.getParam('ipfs')).toBe(cid);

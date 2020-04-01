@@ -13,9 +13,9 @@ export enum Platform {
 }
 
 export interface ChainAPI {
-  cacheMasterToken: Map<TokenId, Token>;
+  cacheToken: Map<TokenId, Token>;
   getAvailableTokenId(contract: string): Promise<TokenId>;
-  getMasterToken(contract: string, tokenId: TokenId): Promise<Token>;
+  getToken(contract: string, tokenId: TokenId): Promise<Token>;
   getCurrValueByLeverId(contract: string, leverId: LeverId, tokenId: TokenId): Promise<number>;
   mintArtwork(contract: string, issuer: string, artist: string, uri: string, collaborators: Array<string>);
   setuptoken(contract: string, tokenHolder: string, tokenId: TokenId, minValues: number[], maxValues: number[], currValues: number[]);

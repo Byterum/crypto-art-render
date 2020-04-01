@@ -1,7 +1,7 @@
 import { MasterConfig } from '../src/master_config';
 import * as fs from 'fs';
-import Render from '../src/render';
-import Generator from '../src/generator';
+import { Render } from '../src/render';
+import { Generator } from '../src/generator';
 import IpfsLoader from '../src/loader/ipfs_loader';
 import EosAPI from '../src/blockchain/eos';
 import Jimp from 'jimp';
@@ -28,7 +28,7 @@ describe('test artwork render', () => {
       const minValues = [0, 0, -360];
       const maxValues = [3, 1800, 360];
       const currValues = [0, 0, 0];
-      const master = await api.getMasterToken(contract, masterId);
+      const master = await api.getToken(contract, masterId);
       if (master) return;
       await gen.mintArtwork(api, contract, 'eosio', 'eosio', cid);
       await gen.setuptoken(api, contract, 'eosio', masterId, 1, minValues, maxValues, currValues);

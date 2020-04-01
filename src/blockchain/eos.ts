@@ -23,7 +23,7 @@ export const defaultEosAPIOption: EosAPIOption = {
 }
 
 export default class EosAPI implements ChainAPI {
-  cacheMasterToken: Map<TokenId, Token>;
+  cacheToken: Map<TokenId, Token>;
   api: Api;
 
   constructor(options?: EosAPIOption) {
@@ -31,7 +31,7 @@ export default class EosAPI implements ChainAPI {
     const rpc = new JsonRpc(opts.endpoint, { fetch: fetch as any });
     const signatureProvider = new JsSignatureProvider(opts.privKeys)
     this.api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
-    this.cacheMasterToken = new Map<TokenId, Token>();
+    this.cacheToken = new Map<TokenId, Token>();
   }
 
   /**
@@ -52,7 +52,7 @@ export default class EosAPI implements ChainAPI {
       resp.rows.forEach(row => {
         if (row.id === row.master_token_id) {
           // is master token
-          this.cacheMasterToken.set(row.id, {
+          this.cacheToken.set(row.id, {
             id: row.id,
             uri: row.uri,
             symbol: row.value.split(' ')[1]
@@ -65,8 +65,8 @@ export default class EosAPI implements ChainAPI {
     return 0;
   }
 
-  async getMasterToken(contract: string, tokenId: TokenId): Promise<Token> {
-    const masterToken = this.cacheMasterToken.get(tokenId);
+  async getToken(contract: string, tokenId: TokenId): Promise<Token> {
+    const masterToken = this.cacheToken.get(tokenId);
     if (masterToken) return masterToken;
 
     const resp = await this.api.rpc.get_table_rows({
@@ -85,7 +85,7 @@ export default class EosAPI implements ChainAPI {
         uri: token.uri,
         symbol: token.value.split(' ')[1]
       }
-      this.cacheMasterToken.set(tokenId, cache);
+      this.cacheToken.set(tokenId, cache);
       return cache;
     }
     return null;

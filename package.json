@@ -1,6 +1,6 @@
 {
   "name": "crypto-art-render",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Magic render of programmable art.",
   "main": "dist/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "dependencies": {
     "eosjs": "^20.0.3",
     "https-proxy-agent": "^5.0.0",
-    "jimp": "^0.9.5",
+    "jimp": "^0.9.8",
     "js-sha3": "^0.8.0",
     "nft-resolver": "^1.2.6",
     "node-fetch": "^2.6.0"

@@ -67,7 +67,7 @@ export class Render {
    * @param masterId 
    */
   public async loadMasterConfig(contract: string, masterId: TokenId): Promise<MasterConfig> {
-    const masterToken = await this.api.getMasterToken(contract, masterId);
+    const masterToken = await this.api.getToken(contract, masterId);
     if (masterToken.symbol !== 'ART') {
       throw new Error('invalid token symbol, expected \'ART\'');
     }
