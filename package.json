@@ -1,6 +1,6 @@
 {
   "name": "crypto-art-render",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Magic render of programmable art.",
   "main": "dist/index.js",
   "scripts": {

@@ -291,15 +291,16 @@ export class Generator {
    * issued to given issuer at first.
    * @param api Chain api instance
    * @param contract Art contract address
+   * @param masterId Master token id
    * @param artist Artist of artwork
    * @param issuer Issuer of tokens
    * @param cid Master config cid of artwork
    */
-  async mintArtwork(api: ChainAPI, contract: string, artist: string, issuer: string, configCid: string) {
+  async mintArtwork(api: ChainAPI, contract: string, masterId: TokenId, artist: string, issuer: string, configCid: string) {
     this.collectTokens();
     try {
       const tokens = Array.from(this.tokenLeverNum.keys());
-      await api.mintArtwork(contract, issuer, artist, configCid, tokens.map(_ => issuer))
+      await api.mintArtwork(contract, masterId, issuer, artist, configCid, tokens.map(_ => issuer))
     } catch (e) {
       throw new Error(`failed to mint artwork on chain: ${e.message}`);
     }

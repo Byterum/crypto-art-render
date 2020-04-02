@@ -30,7 +30,7 @@ describe('test artwork render', () => {
       const currValues = [0, 0, 0];
       const master = await api.getToken(contract, masterId);
       if (master) return;
-      await gen.mintArtwork(api, contract, 'eosio', 'eosio', cid);
+      await gen.mintArtwork(api, contract, masterId, 'eosio', 'eosio', cid);
       await gen.setuptoken(api, contract, 'eosio', masterId, 1, minValues, maxValues, currValues);
       await gen.setuptoken(api, contract, 'eosio', masterId, 2, [0], [1], [0]);
     } catch (e) {

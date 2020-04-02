@@ -17,7 +17,7 @@ export interface ChainAPI {
   getAvailableTokenId(contract: string): Promise<TokenId>;
   getToken(contract: string, tokenId: TokenId): Promise<Token>;
   getCurrValueByLeverId(contract: string, leverId: LeverId, tokenId: TokenId): Promise<number>;
-  mintArtwork(contract: string, issuer: string, artist: string, uri: string, collaborators: Array<string>);
+  mintArtwork(contract: string, masterId: TokenId, issuer: string, artist: string, uri: string, collaborators: Array<string>);
   setuptoken(contract: string, tokenHolder: string, tokenId: TokenId, minValues: number[], maxValues: number[], currValues: number[]);
   updatetoken(contract: string, tokenHolder: string, tokenId: TokenId, leverIds: number[], newValues: number[]);
 }

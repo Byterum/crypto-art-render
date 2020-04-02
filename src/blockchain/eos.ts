@@ -134,7 +134,7 @@ export default class EosAPI implements ChainAPI {
     return 0;
   }
 
-  async mintArtwork(contract: string, issuer: string, artist: string, uri: string, collaborators: Array<string>) {
+  async mintArtwork(contract: string, masterId: TokenId, issuer: string, artist: string, uri: string, collaborators: Array<string>) {
     return await this.api.transact({
       actions: [{
         account: contract,
@@ -144,6 +144,7 @@ export default class EosAPI implements ChainAPI {
           permission: 'active'
         }],
         data: {
+          token_id: masterId,
           to: artist,
           uri,
           collaborators

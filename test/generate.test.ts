@@ -149,7 +149,7 @@ describe('test artwork generator', () => {
 
     it('mint artwork on chain', async () => {
       masterId = await generator.availableTokenId(api, contract);
-      await generator.mintArtwork(api, contract, 'eosio', 'eosio', cid);
+      await generator.mintArtwork(api, contract, masterId, 'eosio', 'eosio', cid);
       const token = await api.getToken(contract, masterId);
       expect(token.id).toBe(masterId);
       const reslovedUri = new NftURI(token.uri);
