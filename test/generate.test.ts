@@ -41,7 +41,7 @@ describe('test artwork generator', () => {
 
 
   it('add layer `Background`', () => {
-    generator.setLayout('layered_static', 1);
+    generator.initLayout('layered_static', 1);
     const layerStates = {
       options: [
         {

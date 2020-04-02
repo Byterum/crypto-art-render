@@ -63,7 +63,7 @@ export class Generator {
    * @param version Layout version
    * @param layers Layers the layout holds. Default empty array.
    */
-  setLayout(type: string, version: number, layers: Array<Layer> = []) {
+  initLayout(type: string, version: number, layers: Array<Layer> = []) {
     this.config.layout = {
       type,
       version,
@@ -86,6 +86,8 @@ export class Generator {
         id: layerId,
         states,
       });
+    } else {
+      throw new Error('please initialize layout first');
     }
   }
 
