@@ -106,6 +106,8 @@ export class Generator {
         id: layerId,
         ...body
       })
+    } else {
+      throw new Error('please initialize layout first');
     }
   }
 
@@ -126,6 +128,8 @@ export class Generator {
       } else {
         layer[KEY_STATES].options.push(...opts);
       }
+    } else {
+      throw new Error('please initialize layout first');
     }
   }
 
