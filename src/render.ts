@@ -5,6 +5,13 @@ import { NftURI } from "nft-resolver";
 import { Loader } from "./loader/interface";
 import { sha3_256 } from 'js-sha3';
 
+interface Logger {
+  error(msg: any, ...args: any[]): void;
+  warn(msg: any, ...args: any[]): void;
+  info(msg: any, ...args: any[]): void;
+  debug(msg: any, ...args: any[]): void;
+}
+
 // RenderMap is used to cache the value controlled by layer token 
 // of an image, and provides utilities to get hash of the current state.
 class RenderMap {
@@ -50,15 +57,17 @@ export class Render {
   api: ChainAPI;
   bc: Platform;
   loader: Loader;
+  logger: Logger;
 
   // master token id => render map
   renderMap: Map<TokenId, RenderMap>;
 
-  constructor(loader: Loader, api: ChainAPI, platform: Platform = Platform.EOS) {
+  constructor(loader: Loader, api: ChainAPI, logger: Logger = console, platform: Platform = Platform.EOS) {
     this.bc = platform;
     this.api = api;
     this.loader = loader;
     this.renderMap = new Map<TokenId, RenderMap>();
+    this.logger = logger;
   }
 
   /**
@@ -75,7 +84,7 @@ export class Render {
       throw new Error('invalid token symbol, expected \'ART\'');
     }
 
-    // console.log(`Load token ${masterToken.id} from contract success`);
+    // this.logger.debug(`Load token ${masterToken.id} from contract success`);
     const resolvedUri = new NftURI(masterToken.uri);
     const cid = resolvedUri.getParam('ipfs');
     if (!cid) {
@@ -128,11 +137,11 @@ export class Render {
     // load the token URI for the layout
     for (let i = 0; i < layout.layers.length; i++) {
       let layer: Layer = layout.layers[i];
-      console.log(process.memoryUsage().rss / 1024 / 1024 + " MB");
-      console.log(`rendering layer [${i + 1}] with layer-id ${layer.id}`);
+      this.logger.debug(process.memoryUsage().rss / 1024 / 1024 + " MB");
+      this.logger.debug(`rendering layer [${i + 1}] with layer-id ${layer.id}`);
 
       if (i !== 0) {
-        console.log(`cost time ${Date.now() - start}ms`);
+        this.logger.debug(`cost time ${Date.now() - start}ms`);
       }
       start = Date.now();
 
@@ -213,7 +222,7 @@ export class Render {
       const scaleX = await this.readValueFromChain(contract, masterId, currLayer[KEY_SCALE]['x']);
       const scaleY = await this.readValueFromChain(contract, masterId, currLayer[KEY_SCALE]['y']);
       if (scaleX === 0 || scaleY === 0) {
-        console.log("scale X or Y is 0 -- returning currentImage.");
+        this.logger.debug("scale X or Y is 0 -- returning currentImage.");
         return currImage;
       }
       // calculate the new width
@@ -282,7 +291,7 @@ export class Render {
 
       if (KEY_ORBIT_ROTATION in currLayer) {
         const degree = await this.readValueFromChain(contract, masterId, currLayer[KEY_ORBIT_ROTATION]);
-        console.log(`orbit ${degree} degree around anchor (${x},${y})`);
+        this.logger.debug(`orbit ${degree} degree around anchor (${x},${y})`);
         const rad = (-degree * Math.PI) / 180;
 
         // calculate the new relative position
