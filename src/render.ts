@@ -6,10 +6,17 @@ import { Loader } from "./loader/interface";
 import { sha3_256 } from 'js-sha3';
 
 interface Logger {
+<<<<<<< HEAD
   error(msg: any, ...args: any[]): void;
   warn(msg: any, ...args: any[]): void;
   info(msg: any, ...args: any[]): void;
   debug(msg: any, ...args: any[]): void;
+=======
+  info(msg: string);
+  debug(msg: string);
+  warn(msg: string);
+  error(msg: string);
+>>>>>>> 86519d4468d76685ea152cce16197029115c7fb6
 }
 
 // RenderMap is used to cache the value controlled by layer token 

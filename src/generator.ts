@@ -33,6 +33,23 @@ export class Generator {
     }
   }
 
+  setBasic(update: {
+    name?: string,
+    desc?: string,
+    image?: string
+  }) {
+    const { name, desc, image } = update;
+    if (name) {
+      this.config.name = name;
+    }
+    if (desc) {
+      this.config.description = desc;
+    }
+    if (image) {
+      this.config.image = image;
+    }
+  }
+
   get masterConfig(): MasterConfig {
     return this.config;
   }
