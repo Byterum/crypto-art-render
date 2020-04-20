@@ -314,6 +314,8 @@ export class Render {
     x -= bitmapWidth / 2;
     y -= bitmapHeight / 2;
 
+    const compositeOptions = {} as any;
+
     // apply `color` property to layer
     if (KEY_COLOR in currLayer) {
       const color = currLayer[KEY_COLOR];
@@ -361,9 +363,39 @@ export class Render {
         const alpha = await this.readValueFromChain(contract, masterId, color[Color.ALPHA]);
         layerImage.opacity(alpha / 100);
       }
-    }
 
-    return currImage.composite(layerImage, x, y);
+
+
+      if (Color.MULTIPLY in color) {
+        const shouldMultiply = (await this.readValueFromChain(contract, masterId, color[Color.MULTIPLY])) > 0;
+        if (shouldMultiply) {
+          compositeOptions.mode = Jimp.BLEND_MULTIPLY;
+          if (Color.OPACITY in color) {
+            const opacity = await this.readValueFromChain(contract, masterId, color[Color.OPACITY]);
+            compositeOptions.opacitySource = opacity / 100;
+          }
+        }
+      } else if (Color.LIGHTEN in color) {
+        const shouldMultiply = (await this.readValueFromChain(contract, masterId, color[Color.LIGHTEN])) > 0;
+        if (shouldMultiply) {
+          compositeOptions.mode = Jimp.BLEND_LIGHTEN;
+          if (Color.OPACITY in color) {
+            const opacity = await this.readValueFromChain(contract, masterId, color[Color.OPACITY]);
+            compositeOptions.opacitySource = opacity / 100;
+          }
+        }
+      } else if (Color.OVERLAY in color) {
+        const shouldMultiply = (await this.readValueFromChain(contract, masterId, color[Color.OVERLAY])) > 0;
+        if (shouldMultiply) {
+          compositeOptions.mode = Jimp.BLEND_OVERLAY;
+          if (Color.OPACITY in color) {
+            const opacity = await this.readValueFromChain(contract, masterId, color[Color.OPACITY]);
+            compositeOptions.opacitySource = opacity / 100;
+          }
+        }
+      }
+    }
+    return currImage.composite(layerImage, x, y, compositeOptions);
   }
 
   /**

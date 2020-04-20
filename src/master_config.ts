@@ -8,11 +8,11 @@ export const KEY_VISIBLE = 'visible';
 export const KEY_STATES = 'states';
 export const KEY_TOKEN_ID = 'token-id';
 export const KEY_LEVER_ID = 'lever-id';
-export const KEY_COLOR = 'color';
 export const KEY_TRAIT_TYPE = 'trait_type';
 export const KEY_WIDTH = 'width';
 export const KEY_HEIGHT = 'height';
-export const KEY_ANCHOR = 'anchor'
+export const KEY_ANCHOR = 'anchor';
+export const KEY_COLOR = 'color';
 
 export enum TrailType {
   Artist = 'Artist',
@@ -40,7 +40,11 @@ export enum Color {
   G = 'green',
   B = 'blue',
   ALPHA = 'alpha',
-  HUE = 'hue'
+  HUE = 'hue',
+  MULTIPLY = 'multiply',
+  LIGHTEN = 'lighten',
+  OPACITY = 'opacity',
+  OVERLAY = 'overlay'
 }
 
 // Locate the image with 2d parameters
@@ -61,6 +65,10 @@ export interface ColorType {
   [Color.B]?: IntProperty;
   [Color.ALPHA]?: IntProperty;
   [Color.HUE]?: IntProperty;
+  [Color.MULTIPLY]?: IntProperty;
+  [Color.LIGHTEN]?: IntProperty;
+  [Color.OPACITY]?: IntProperty;
+  [Color.OVERLAY]?: IntProperty;
 }
 
 // Main layer interface

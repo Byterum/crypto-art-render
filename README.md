@@ -76,6 +76,10 @@ A layer option defines an option of a layer that token holder can choose.
   - blue (IntProperty)
   - alpha (IntProperty)
   - hue (IntProperty)
+  - multiply (IntProperty)
+  - lighten (IntProperty)
+  - overlay (IntProperty)
+  - opacity (IntProperty)
 
 ### Layer
 
@@ -114,16 +118,16 @@ generator.intialize(
 generator.setAttributes([
   {
     [KEY_TRAIT_TYPE]: "Artist",
-    value: "LowesYang"
+    value: "LowesYang",
   },
   {
     [KEY_TRAIT_TYPE]: "Artist",
-    value: "YYH"
+    value: "YYH",
   },
   {
     [KEY_TRAIT_TYPE]: "Layer Count",
-    value: "4"
-  }
+    value: "4",
+  },
 ]);
 
 // Set fields in master config
