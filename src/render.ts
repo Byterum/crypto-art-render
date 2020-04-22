@@ -365,7 +365,7 @@ export class Render {
       }
 
 
-
+      // blend mode
       if (Color.MULTIPLY in color) {
         const shouldMultiply = (await this.readValueFromChain(contract, masterId, color[Color.MULTIPLY])) > 0;
         if (shouldMultiply) {
@@ -375,7 +375,8 @@ export class Render {
             compositeOptions.opacitySource = opacity / 100;
           }
         }
-      } else if (Color.LIGHTEN in color) {
+      }
+      if (Color.LIGHTEN in color) {
         const shouldMultiply = (await this.readValueFromChain(contract, masterId, color[Color.LIGHTEN])) > 0;
         if (shouldMultiply) {
           compositeOptions.mode = Jimp.BLEND_LIGHTEN;
@@ -384,7 +385,8 @@ export class Render {
             compositeOptions.opacitySource = opacity / 100;
           }
         }
-      } else if (Color.OVERLAY in color) {
+      }
+      if (Color.OVERLAY in color) {
         const shouldMultiply = (await this.readValueFromChain(contract, masterId, color[Color.OVERLAY])) > 0;
         if (shouldMultiply) {
           compositeOptions.mode = Jimp.BLEND_OVERLAY;
