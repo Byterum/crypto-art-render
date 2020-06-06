@@ -16,11 +16,13 @@ import fetch from 'node-fetch';
 interface EosAPIOption {
   endpoint: string;
   privKeys: string[];
+  fetch: any;
 }
 
 export const defaultEosAPIOption: EosAPIOption = {
   endpoint: "http://localhost:8888",
-  privKeys: ['5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3']
+  privKeys: ['5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3'],
+  fetch: fetch
 }
 
 export default class EosAPI implements ChainAPI {
@@ -29,7 +31,7 @@ export default class EosAPI implements ChainAPI {
 
   constructor(options?: EosAPIOption) {
     const opts = Object.assign({}, defaultEosAPIOption, options || {});
-    const rpc = new JsonRpc(opts.endpoint, { fetch: fetch as any });
+    const rpc = new JsonRpc(opts.endpoint, { fetch: opts.fetch || fetch as any });
     const signatureProvider = new JsSignatureProvider(opts.privKeys)
     this.api = new Api({ rpc, signatureProvider, textDecoder: new TextDecoder(), textEncoder: new TextEncoder() });
     this.cacheToken = new Map<TokenId, Token>();
