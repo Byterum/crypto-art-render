@@ -16,7 +16,7 @@ import fetch from 'node-fetch';
 interface EosAPIOption {
   endpoint: string;
   privKeys: string[];
-  fetch: any;
+  fetch?: any;
 }
 
 export const defaultEosAPIOption: EosAPIOption = {
